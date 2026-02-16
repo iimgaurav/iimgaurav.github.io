@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaurav Kumar | Data Engineer</title>
+    <meta name="description"
+        content="Portfolio of Gaurav Kumar – Data Engineer specializing in Azure, ETL pipelines, data warehousing, and scalable data ecosystems.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Animated Background Canvas -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-monogram"><span class="logo-g">G</span><span class="logo-k">K</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#tech-stack">Tech Stack</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="toggle-icon sun">☀️</span>
+                    <span class="toggle-icon moon">🌙</span>
+                </button>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-container">
+            <div class="system-status">
+                <span class="status-dot"></span>
+                System Status: Active
+            </div>
+            <h1 class="hero-title">
+                Architecting <span class="gradient-text">Scalable Data</span> Ecosystems.
+            </h1>
+            <p class="hero-subtitle">
+                Data Engineer crafting robust ETL pipelines, data warehouses & analytics solutions with
+                <span class="highlight">Azure Data Factory</span>,
+                <span class="highlight">SQL</span>,
+                <span class="highlight">Python</span> &
+                <span class="highlight">Power BI</span>.
+            </p>
+            <div class="hero-actions">
+                <a href="#projects" class="btn btn-primary">
+                    <span class="btn-icon">⚡</span> View Projects
+                </a>
+                <a href="https://drive.google.com/uc?export=download&id=1rhJuQHrT7UKfeTYx4s46A2TWBaKmy-am"
+                    class="btn btn-resume" target="_blank">
+                    <span class="btn-icon">📄</span> Download Resume
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <span class="btn-icon">📡</span> Get in Touch
+                </a>
+                <a href="https://github.com/iimgaurav" target="_blank" class="btn btn-ghost">
+                    <span class="btn-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                        </svg></span> GitHub
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="3">0</span>+
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="5">0</span>+
+                    <span class="stat-label">Certifications</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="10">0</span>+
+                    <span class="stat-label">Projects Delivered</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// ABOUT</span>
+                <h2 class="section-title">Data Engineer <span class="gradient-text">@ TCS</span></h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        Passionate Data Engineer with <strong>3+ years</strong> at Tata Consultancy Services,
+                        specializing in building
+                        enterprise-grade data solutions on <strong>Microsoft Azure</strong>. I architect and optimize
+                        ETL/ELT workflows,
+                        design star schema data models, and deliver actionable BI dashboards using Power BI.
+                    </p>
+                    <p>
+                        My expertise spans the full data lifecycle — from ingestion and transformation using
+                        <strong>Azure Data Factory</strong> and <strong>Azure Synapse</strong>, to building secure,
+                        scalable data lake architectures on <strong>ADLS Gen2</strong> with medallion patterns.
+                    </p>
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🏗️</span>
+                            <span>Pipeline Architecture</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">📊</span>
+                            <span>Data Modeling</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">🔐</span>
+                            <span>Security & Governance</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">⚡</span>
+                            <span>Performance Tuning</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-terminal">
+                    <div class="terminal-header">
+                        <span class="terminal-dot red"></span>
+                        <span class="terminal-dot yellow"></span>
+                        <span class="terminal-dot green"></span>
+                        <span class="terminal-title">gaurav@data-engineer:~</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="prompt">$</span> cat profile.json
+                        </div>
+                        <pre class="terminal-output">{
+  "name": "Gaurav Kumar",
+  "role": "Data Engineer",
+  "location": "Gurugram, India",
+  "company": "TCS",
+  "since": "May 2022",
+  "stack": ["Azure", "SQL", "Python"],
+  "status": "<span class="lime">active</span>"
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="section" id="tech-stack">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// TECH STACK</span>
+                <h2 class="section-title">Tools of the <span class="gradient-text">Trade</span></h2>
+            </div>
+            <div class="bento-grid">
+                <div class="bento-card bento-large reveal">
+                    <div class="bento-icon">⚙️</div>
+                    <h3>Data Processing</h3>
+                    <p>Building robust ETL/ELT workflows for high-volume data transformation.</p>
+                    <div class="bento-tags">
+                        <span class="tag">Azure Data Factory</span>
+                        <span class="tag">Azure Synapse</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">SQL</span>
+                    </div>
+                </div>
+                <div class="bento-card reveal">
+                    <div class="bento-icon">🗄️</div>
+                    <h3>Storage & Lakes</h3>
+                    <p>Designing scalable data lake & warehouse architectures.</p>
+                    <div class="bento-tags">
+                        <span class="tag">ADLS Gen2</span>
+                        <span class="tag">Delta Lake</span>
+                        <span class="tag">Azure SQL</span>
+                        <span class="tag">MySQL</span>
+                    </div>
+                </div>
+                <div class="bento-card reveal">
+                    <div class="bento-icon">📊</div>
+                    <h3>BI & Analytics</h3>
+                    <p>Transforming raw data into actionable business insights.</p>
+                    <div class="bento-tags">
+                        <span class="tag">Power BI</span>
+                        <span class="tag">Tableau</span>
+                        <span class="tag">Excel</span>
+                        <span class="tag">DAX</span>
+                    </div>
+                </div>
+                <div class="bento-card reveal">
+                    <div class="bento-icon">🔄</div>
+                    <h3>Orchestration</h3>
+                    <p>Scheduling, monitoring and automating data workflows.</p>
+                    <div class="bento-tags">
+                        <span class="tag">ADF Pipelines</span>
+                        <span class="tag">Logic Apps</span>
+                        <span class="tag">Event Hub</span>
+                        <span class="tag">Service Bus</span>
+                    </div>
+                </div>
+                <div class="bento-card reveal">
+                    <div class="bento-icon">🔐</div>
+                    <h3>Security & DevOps</h3>
+                    <p>Implementing CI/CD, governance, and secure credential management.</p>
+                    <div class="bento-tags">
+                        <span class="tag">Key Vault</span>
+                        <span class="tag">Git</span>
+                        <span class="tag">CI/CD</span>
+                        <span class="tag">Azure Functions</span>
+                    </div>
+                </div>
+                <div class="bento-card bento-large reveal">
+                    <div class="bento-icon">📈</div>
+                    <h3>Monitoring & Governance</h3>
+                    <p>Ensuring data quality, pipeline reliability, and governance standards.</p>
+                    <div class="bento-tags">
+                        <span class="tag">Log Analytics</span>
+                        <span class="tag">ADF Monitoring</span>
+                        <span class="tag">Synapse Monitoring</span>
+                        <span class="tag">Data Quality</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// PROJECTS</span>
+                <h2 class="section-title">Featured <span class="gradient-text">Pipelines</span></h2>
+            </div>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <a href="https://github.com/iimgaurav/sql-data-warehouse-project" target="_blank"
+                    class="project-card project-card-link reveal">
+                    <div class="project-header">
+                        <div class="project-icon">🏗️</div>
+                        <div class="project-links">
+                            <span class="project-link">↗</span>
+                        </div>
+                    </div>
+                    <h3>SQL Data Warehouse & Analytics</h3>
+                    <p>Designed and deployed a SQL-based Data Warehouse integrating multiple data sources. Built star
+                        schema models
+                        with fact and dimension tables for scalable reporting and analytical insights.</p>
+                    <div class="project-architecture">
+                        <div class="arch-flow">
+                            <span class="arch-node">Source</span>
+                            <span class="arch-arrow">→</span>
+                            <span class="arch-node">ETL</span>
+                            <span class="arch-arrow">→</span>
+                            <span class="arch-node">Bronze</span>
+                            <span class="arch-arrow">→</span>
+                            <span class="arch-node">Silver</span>
+                            <span class="arch-arrow">→</span>
+                            <span class="arch-node">Gold</span>
+                            <span class="arch-arrow">→</span>
+                            <span class="arch-node">BI</span>
+                        </div>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">SQL</span>
+                        <span class="tag">ADF</span>
+                        <span class="tag">Star Schema</span>
+                        <span class="tag">Git</span>
+                    </div>
+                    <span class="ripple-container"></span>
+                </a>
+
+                <!-- Project 2 -->
+                <a href="https://github.com/iimgaurav/sales_pipline" target="_blank"
+                    class="project-card project-card-link reveal">
+                    <div class="project-header">
+                        <div class="project-icon">🔄</div>
+                        <div class="project-links">
+                            <span class="project-link">↗</span>
+                        </div>
+                    </div>
+                    <h3>Data Ingestion & ETL Automation</h3>
+                    <p>Automated ETL pipeline ingesting daily sales data from multiple sources into a centralized Data
+                        Lake.
+                        Built Bronze-Silver-Gold transformation layers with SCD Type 2 and schema consistency checks.
+                    </p>
+                    <div class="project-architecture">
+                        <div class="arch-flow">
+                            <span class="arch-node">Ingest</span>
+                            <span class="arch-arrow">→</span>
+                            <span class="arch-node">Bronze</span>
+                            <span class="arch-arrow">→</span>
+                            <span class="arch-node">Silver</span>
+                            <span class="arch-arrow">→</span>
+                            <span class="arch-node">Gold</span>
+                        </div>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">ADF</span>
+                        <span class="tag">ADLS Gen2</span>
+                        <span class="tag">SCD Type 2</span>
+                        <span class="tag">Delta Lake</span>
+                    </div>
+                    <span class="ripple-container"></span>
+                </a>
+
+                <!-- Project 3 -->
+                <a href="https://github.com/iimgaurav/sales_pipline" target="_blank"
+                    class="project-card project-card-link reveal">
+                    <div class="project-header">
+                        <div class="project-icon">⚡</div>
+                        <div class="project-links">
+                            <span class="project-link">↗</span>
+                        </div>
+                    </div>
+                    <h3>Sales Flow – Production ETL Pipeline</h3>
+                    <p>Built end-to-end production-grade ETL pipelines using Python & SQL. Implemented CI/CD with GitHub
+                        Actions,
+                        including linting, testing, scheduled execution, and secure secret management.</p>
+                    <div class="project-architecture">
+                        <div class="arch-flow">
+                            <span class="arch-node">Python</span>
+                            <span class="arch-arrow">→</span>
+                            <span class="arch-node">Validate</span>
+                            <span class="arch-arrow">→</span>
+                            <span class="arch-node">Transform</span>
+                            <span class="arch-arrow">→</span>
+                            <span class="arch-node">Load</span>
+                        </div>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">GitHub Actions</span>
+                        <span class="tag">CI/CD</span>
+                    </div>
+                    <span class="ripple-container"></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section" id="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// EXPERIENCE</span>
+                <h2 class="section-title">Career <span class="gradient-text">Commits</span></h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot">
+                        <span class="commit-hash">#a1b2c3</span>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Data Engineer</h3>
+                            <span class="timeline-company">Tata Consultancy Services (TCS)</span>
+                        </div>
+                        <span class="timeline-date">May 2022 – Present</span>
+                        <ul class="timeline-details">
+                            <li>Engineered robust ETL/ELT workflows using <strong>Azure Data Factory</strong> and
+                                <strong>Synapse</strong> to ingest high-volume data from SAP and flat files.
+                            </li>
+                            <li>Integrated <strong>Azure Key Vault</strong> for secure credential management,
+                                significantly reducing pipeline failure rates.</li>
+                            <li>Designed <strong>Star Schema</strong> models in Azure Synapse using Hash Distribution
+                                and SCD Type 2 for historical price tracking.</li>
+                            <li>Architected multi-hop <strong>Data Lake</strong> (Bronze/Silver/Gold) on ADLS Gen2,
+                                ensuring 100% data consistency.</li>
+                            <li>Collaborated with the BI team to automate <strong>Power BI</strong> refreshes directly
+                                from Synapse, reducing turnaround from days to near real-time.</li>
+                            <li>Leveraged <strong>Python</strong> scripts for data validation, preprocessing,
+                                reconciliation, and quality verification.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// SKILLS</span>
+                <h2 class="section-title">Skill <span class="gradient-text">Matrix</span></h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category reveal">
+                    <h3 class="category-title">
+                        <span class="category-icon">💻</span> Languages
+                    </h3>
+                    <div class="skill-badges">
+                        <span class="skill-badge">SQL</span>
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">DAX</span>
+                        <span class="skill-badge">T-SQL</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal">
+                    <h3 class="category-title">
+                        <span class="category-icon">☁️</span> Cloud & Platforms
+                    </h3>
+                    <div class="skill-badges">
+                        <span class="skill-badge">Azure Data Factory</span>
+                        <span class="skill-badge">Azure Synapse</span>
+                        <span class="skill-badge">ADLS Gen2</span>
+                        <span class="skill-badge">Azure Functions</span>
+                        <span class="skill-badge">Logic Apps</span>
+                        <span class="skill-badge">Key Vault</span>
+                        <span class="skill-badge">Event Hub</span>
+                        <span class="skill-badge">Service Bus</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal">
+                    <h3 class="category-title">
+                        <span class="category-icon">🛠️</span> Data Engineering
+                    </h3>
+                    <div class="skill-badges">
+                        <span class="skill-badge">ETL/ELT Pipelines</span>
+                        <span class="skill-badge">Data Warehousing</span>
+                        <span class="skill-badge">Star Schema</span>
+                        <span class="skill-badge">Snowflake Schema</span>
+                        <span class="skill-badge">SCD Type 2</span>
+                        <span class="skill-badge">Delta Lake</span>
+                        <span class="skill-badge">Data Modeling</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal">
+                    <h3 class="category-title">
+                        <span class="category-icon">📊</span> BI & Visualization
+                    </h3>
+                    <div class="skill-badges">
+                        <span class="skill-badge">Power BI</span>
+                        <span class="skill-badge">Tableau</span>
+                        <span class="skill-badge">Excel</span>
+                        <span class="skill-badge">PowerPoint</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal">
+                    <h3 class="category-title">
+                        <span class="category-icon">🔧</span> DevOps & Tools
+                    </h3>
+                    <div class="skill-badges">
+                        <span class="skill-badge">Git</span>
+                        <span class="skill-badge">CI/CD</span>
+                        <span class="skill-badge">GitHub Actions</span>
+                        <span class="skill-badge">Version Control</span>
+                    </div>
+                </div>
+                <div class="skill-category reveal">
+                    <h3 class="category-title">
+                        <span class="category-icon">🤝</span> Soft Skills
+                    </h3>
+                    <div class="skill-badges">
+                        <span class="skill-badge">Stakeholder Communication</span>
+                        <span class="skill-badge">Requirements Analysis</span>
+                        <span class="skill-badge">Cross-functional Collaboration</span>
+                        <span class="skill-badge">Delivery Ownership</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Excellence Section -->
+    <section class="section" id="education">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// EDUCATION</span>
+                <h2 class="section-title">Academic <span class="gradient-text">Excellence</span></h2>
+            </div>
+            <div class="education-grid">
+                <div class="edu-card reveal">
+                    <div class="edu-icon">🎓</div>
+                    <div class="edu-content">
+                        <h3>Master of Computer Applications</h3>
+                        <span class="edu-school">Chandigarh University, Chandigarh</span>
+                        <span class="edu-date">Aug 2022 – May 2024</span>
+                        <p class="edu-focus">Focus: Computer Science & Distributed Systems</p>
+                    </div>
+                </div>
+                <div class="edu-card reveal">
+                    <div class="edu-icon">📜</div>
+                    <div class="edu-content">
+                        <h3>Bachelor of Science – Computer Science</h3>
+                        <span class="edu-school">Amity University, Raipur, Chhattisgarh</span>
+                        <span class="edu-date">Aug 2017 – May 2020</span>
+                        <p class="edu-focus">CGPA: 8.4 / 10</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="section" id="certifications">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// CERTIFICATIONS</span>
+                <h2 class="section-title">Verified <span class="gradient-text">Credentials</span></h2>
+            </div>
+            <div class="cert-grid">
+                <div class="cert-card reveal">
+                    <div class="cert-badge">DP-600</div>
+                    <h4>Fabric Analytics Engineer Associate</h4>
+                    <span class="cert-issuer">Microsoft</span>
+                </div>
+                <div class="cert-card reveal">
+                    <div class="cert-badge">DP-900</div>
+                    <h4>Azure Data Fundamentals</h4>
+                    <span class="cert-issuer">Microsoft</span>
+                </div>
+                <div class="cert-card reveal">
+                    <div class="cert-badge">PL-300</div>
+                    <h4>Power BI Data Analyst</h4>
+                    <span class="cert-issuer">Microsoft</span>
+                </div>
+                <div class="cert-card reveal">
+                    <div class="cert-badge">AZ-900</div>
+                    <h4>Azure Fundamentals</h4>
+                    <span class="cert-issuer">Microsoft</span>
+                </div>
+                <div class="cert-card reveal">
+                    <div class="cert-badge">SQL</div>
+                    <h4>SQL – Intermediate</h4>
+                    <span class="cert-issuer">Certification</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">// CONTACT</span>
+                <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <p class="contact-intro">Open to opportunities in Data Engineering, Cloud Architecture & Analytics.
+                        Let's build something amazing together.</p>
+                    <div class="contact-links">
+                        <a href="mailto:k.gaurav653@gmail.com" class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div>
+                                <span class="contact-label">Email</span>
+                                <span class="contact-value">k.gaurav653@gmail.com</span>
+                            </div>
+                        </a>
+                        <a href="tel:+917070756905" class="contact-item">
+                            <span class="contact-icon">📱</span>
+                            <div>
+                                <span class="contact-label">Phone</span>
+                                <span class="contact-value">+91 70707-56905</span>
+                            </div>
+                        </a>
+                        <a href="https://linkedin.com/in/gaurav653" target="_blank" class="contact-item">
+                            <span class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                                </svg></span>
+                            <div>
+                                <span class="contact-label">LinkedIn</span>
+                                <span class="contact-value">linkedin.com/in/gaurav653</span>
+                            </div>
+                        </a>
+                        <a href="https://github.com/iimgaurav" target="_blank" class="contact-item">
+                            <span class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                                </svg></span>
+                            <div>
+                                <span class="contact-label">GitHub</span>
+                                <span class="contact-value">github.com/iimgaurav</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="4" placeholder="Let's collaborate on..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-send">
+                            <span class="btn-icon">🚀</span> Send
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terminal Footer -->
+    <footer class="terminal-footer">
+        <div class="container">
+            <div class="footer-terminal">
+                <div class="terminal-header">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-title">terminal</span>
+                </div>
+                <div class="footer-body">
+                    <div class="footer-line">
+                        <span class="prompt">gaurav@portfolio:~$</span> echo $LOCATION
+                    </div>
+                    <div class="footer-output">📍 Gurugram, Haryana, India</div>
+                    <div class="footer-line">
+                        <span class="prompt">gaurav@portfolio:~$</span> date
+                    </div>
+                    <div class="footer-output" id="footerDate">Loading...</div>
+                    <div class="footer-line">
+                        <span class="prompt">gaurav@portfolio:~$</span> echo "Built with ❤️ by Gaurav Kumar © <span
+                            id="footerYear">2026</span>"
+                    </div>
+                    <div class="footer-output footer-links">
+                        <a href="https://github.com/iimgaurav" target="_blank">[ View Source ]</a>
+                        <a href="https://linkedin.com/in/gaurav653" target="_blank">[ LinkedIn ]</a>
+                        <a href="mailto:k.gaurav653@gmail.com">[ Email ]</a>
+                    </div>
+                    <div class="footer-line">
+                        <span class="prompt">gaurav@portfolio:~$</span> <span class="cursor-blink">_</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

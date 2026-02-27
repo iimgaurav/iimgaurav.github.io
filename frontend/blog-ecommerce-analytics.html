@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce Analytics Platform | Blog | Gaurav Kumar</title>
+    <meta name="description"
+        content="A production-grade data pipeline following the Medallion Architecture (Bronze → Silver → Gold), fully containerized with Docker Compose. Weather and exchange-rate analytics with DuckDB, dbt, and Airflow.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Animated Background Canvas -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-monogram"><span class="logo-g">G</span><span class="logo-k">K</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#tech-stack">Tech Stack</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="blogs.html">Blog</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#certifications">Certifications</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="toggle-icon sun">☀️</span>
+                    <span class="toggle-icon moon">🌙</span>
+                </button>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post Hero -->
+    <section class="section blog-post-hero">
+        <div class="container">
+            <a href="blogs.html" class="back-link">← Back to Blog</a>
+            <div class="blog-post-hero-content">
+                <div class="blog-post-icon">📊</div>
+                <h1 class="blog-post-title">Ecommerce Analytics Platform — Architecture Walkthrough</h1>
+                <div class="blog-post-meta">
+                    <span class="blog-post-date">📅 February 2025</span>
+                    <span class="blog-post-reading-time">⏱️ 18 min read</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Post Content -->
+    <section class="section blog-post-section">
+        <div class="container">
+            <article class="blog-post">
+
+                <!-- Overview -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Overview</h2>
+                    <p>A production-grade data pipeline following the <strong>Medallion Architecture (Bronze → Silver →
+                            Gold)</strong>, fully containerized with Docker Compose. It extracts weather and
+                        exchange-rate data from public APIs, cleans and structures it through DuckDB, then produces
+                        analytical models via dbt — all orchestrated by <strong>Apache Airflow</strong>.</p>
+                </section>
+
+                <!-- Architecture Diagram -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Architecture Diagram</h2>
+
+                    <!-- DIAGRAM: Medallion Architecture Flow -->
+                    <div class="diagram-container">
+                        <div class="diagram-title">🏗️ Medallion Architecture — End-to-End Pipeline</div>
+
+                        <!-- Orchestration Layer -->
+                        <div style="text-align:center; margin-bottom:20px;">
+                            <div class="arch-box cloud" style="max-width:380px; margin:0 auto;">
+                                🔄 Airflow DAG<span class="arch-box-sub">ecommerce_analytics_pipeline — Daily 06:00
+                                    UTC</span>
+                            </div>
+                            <div class="arch-connector" style="font-size:0.7rem;">orchestrates all layers ↓</div>
+                        </div>
+
+                        <!-- Layers -->
+                        <div style="display:grid; grid-template-columns:1fr; gap:20px;">
+
+                            <!-- Bronze Layer -->
+                            <div
+                                style="padding:20px; border-radius:12px; border:2px solid rgba(245,158,11,0.4); background:rgba(245,158,11,0.05);">
+                                <div
+                                    style="font-family:var(--font-mono); font-size:0.85rem; font-weight:700; color:#F59E0B; margin-bottom:14px;">
+                                    🥉 Bronze Layer — Raw API Extraction</div>
+                                <div class="mvc-flow" style="gap:12px;">
+                                    <div class="mvc-box"
+                                        style="background:rgba(6,182,212,0.15);border:2px solid rgba(6,182,212,0.5);color:#06B6D4;">
+                                        ☁️ OpenWeatherMap<span class="mvc-box-sub">5 cities</span></div>
+                                    <div class="mvc-box"
+                                        style="background:rgba(6,182,212,0.15);border:2px solid rgba(6,182,212,0.5);color:#06B6D4;">
+                                        💱 Frankfurter API<span class="mvc-box-sub">10 currencies</span></div>
+                                    <span class="mvc-arrow">→</span>
+                                    <div class="mvc-box"
+                                        style="background:rgba(16,185,129,0.15);border:2px solid rgba(16,185,129,0.5);color:#10B981;">
+                                        🐍 extract_weather.py<span class="mvc-box-sub">extract_exchange_rates.py</span>
+                                    </div>
+                                    <span class="mvc-arrow">→</span>
+                                    <div class="mvc-box"
+                                        style="background:rgba(245,158,11,0.15);border:2px solid rgba(245,158,11,0.5);color:#F59E0B;">
+                                        🪣 MinIO<span class="mvc-box-sub">s3://landing/</span></div>
+                                </div>
+                            </div>
+
+                            <!-- Silver Layer -->
+                            <div
+                                style="padding:20px; border-radius:12px; border:2px solid rgba(192,192,192,0.4); background:rgba(192,192,192,0.05);">
+                                <div
+                                    style="font-family:var(--font-mono); font-size:0.85rem; font-weight:700; color:#C0C0C0; margin-bottom:14px;">
+                                    🥈 Silver Layer — DuckDB Cleansing</div>
+                                <div class="mvc-flow" style="gap:12px;">
+                                    <div class="mvc-box"
+                                        style="background:rgba(245,158,11,0.15);border:2px solid rgba(245,158,11,0.5);color:#F59E0B;">
+                                        🪣 MinIO<span class="mvc-box-sub">s3://landing/**/*.json</span></div>
+                                    <span class="mvc-arrow">→</span>
+                                    <div class="mvc-box"
+                                        style="background:rgba(16,185,129,0.15);border:2px solid rgba(16,185,129,0.5);color:#10B981;">
+                                        🐍 run_silver.py<span class="mvc-box-sub">SQL executor</span></div>
+                                    <span class="mvc-arrow">→</span>
+                                    <div class="mvc-box"
+                                        style="background:rgba(139,92,246,0.15);border:2px solid rgba(139,92,246,0.5);color:#A78BFA;">
+                                        🦆 DuckDB<span class="mvc-box-sub">silver.weather · silver.exchange_rates</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Gold Layer -->
+                            <div
+                                style="padding:20px; border-radius:12px; border:2px solid rgba(255,215,0,0.4); background:rgba(255,215,0,0.05);">
+                                <div
+                                    style="font-family:var(--font-mono); font-size:0.85rem; font-weight:700; color:#FFD700; margin-bottom:14px;">
+                                    🥇 Gold Layer — dbt Analytical Models</div>
+                                <div class="mvc-flow" style="gap:12px;">
+                                    <div class="mvc-box"
+                                        style="background:rgba(139,92,246,0.15);border:2px solid rgba(139,92,246,0.5);color:#A78BFA;">
+                                        🦆 DuckDB<span class="mvc-box-sub">silver schema</span></div>
+                                    <span class="mvc-arrow">→</span>
+                                    <div class="mvc-box"
+                                        style="background:rgba(217,249,157,0.15);border:2px solid rgba(217,249,157,0.5);color:#D9F99D;">
+                                        stg_weather<span class="mvc-box-sub">severity score · temp range</span></div>
+                                    <div class="mvc-box"
+                                        style="background:rgba(217,249,157,0.15);border:2px solid rgba(217,249,157,0.5);color:#D9F99D;">
+                                        stg_exchange_rates<span class="mvc-box-sub">daily change · volatility</span>
+                                    </div>
+                                    <span class="mvc-arrow">→</span>
+                                    <div class="mvc-box"
+                                        style="background:rgba(255,215,0,0.15);border:2px solid rgba(255,215,0,0.5);color:#FFD700;">
+                                        🏆 fct_weather_currency_impact<span class="mvc-box-sub">impact score
+                                            0–100</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Data Flow Step by Step -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Data Flow — Step by Step</h2>
+
+                    <!-- Step 1: Bronze -->
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">1️⃣ Bronze Layer — Raw API Extraction → MinIO</h3>
+                        <table class="blog-table">
+                            <thead>
+                                <tr>
+                                    <th>File</th>
+                                    <th>Role</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>extract_weather.py</code></td>
+                                    <td>Fetches weather for 5 cities (London, New York, Tokyo, Mumbai, Sydney) from
+                                        OpenWeatherMap API. Falls back to sample data if no API key is set.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>extract_exchange_rates.py</code></td>
+                                    <td>Fetches USD-based exchange rates for 10 currencies from Frankfurter API (no key
+                                        needed).</td>
+                                </tr>
+                                <tr>
+                                    <td><code>minio_utils.py</code></td>
+                                    <td>Shared utility — creates a boto3 S3 client for MinIO, ensures buckets exist, and
+                                        uploads JSON.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p><strong>Storage layout in MinIO:</strong></p>
+                        <pre class="code-block">s3://landing/
+├── weather/2026-02-26/
+│   ├── london.json
+│   ├── new_york.json
+│   └── ...
+└── exchange_rates/2026-02-26/
+    └── rates.json</pre>
+                        <p>Each JSON is enriched with pipeline metadata: <code>_extracted_at</code>,
+                            <code>_source</code>, <code>_city_label</code> / <code>_base_currency</code>.</p>
+                    </div>
+
+                    <!-- Step 2: Silver -->
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">2️⃣ Silver Layer — DuckDB Cleansing</h3>
+                        <table class="blog-table">
+                            <thead>
+                                <tr>
+                                    <th>File</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>silver_init.sql</code></td>
+                                    <td>Installs httpfs extension, creates <code>silver</code> schema.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>silver_weather.sql</code></td>
+                                    <td>Reads all <code>s3://landing/weather/**/*.json</code> via
+                                        <code>read_json_auto</code>, extracts columns (city, temp, humidity, wind,
+                                        etc.), adds <code>quality_flag</code>.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>silver_exchange_rates.sql</code></td>
+                                    <td>Reads <code>s3://landing/exchange_rates/**/*.json</code>, unpivots the rates MAP
+                                        into long format (one row per currency pair), adds <code>inverse_rate</code> and
+                                        <code>quality_flag</code>.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>run_silver.py</code></td>
+                                    <td>Python runner that connects to DuckDB, configures S3/httpfs credentials, and
+                                        executes the SQL files in order.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="blog-success">
+                            <span class="success-icon">✅</span>
+                            <p>Result: Two clean tables — <code>silver.weather</code> and
+                                <code>silver.exchange_rates</code> in <code>data/analytics.duckdb</code></p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Gold -->
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">3️⃣ Gold Layer — dbt Analytical Models</h3>
+                        <table class="blog-table">
+                            <thead>
+                                <tr>
+                                    <th>File</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>stg_weather.sql</code></td>
+                                    <td>Adds computed fields: <code>temp_range_celsius</code>, weather severity score
+                                        (1–5 scale), <code>is_extreme_weather</code> flag. Filters to
+                                        <code>quality_flag = 'OK'</code> only.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>stg_exchange_rates.sql</code></td>
+                                    <td>Adds <code>daily_rate_change</code>, <code>daily_change_pct</code> via LAG
+                                        window function, and <code>volatility_level</code> (LOW/MEDIUM/HIGH).</td>
+                                </tr>
+                                <tr>
+                                    <td><code>fct_weather_currency_impact.sql</code></td>
+                                    <td>The star model — joins daily weather with exchange rates via a city→currency
+                                        mapping. Computes a composite <code>ecommerce_impact_score</code> (0–100) with
+                                        weights: severity 40%, currency volatility 40%, extreme weather 20%. Produces
+                                        <code>impact_classification</code> and <code>operational_recommendation</code>.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p><strong>dbt materialization:</strong></p>
+                        <ul class="blog-list">
+                            <li>Staging models → <code>table</code> (full refresh)</li>
+                            <li>Gold models → <code>view</code> (always-fresh reads)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Step 4: Airflow -->
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">4️⃣ Orchestration — Airflow DAG</h3>
+                        <p><code>ecommerce_analytics_dag.py</code> defines:</p>
+                        <pre class="code-block">extract_weather ───┐
+                   ├──► run_silver_layer ──► dbt_run ──► dbt_test
+extract_exchange ──┘</pre>
+
+                        <!-- DAG Flow Diagram -->
+                        <div class="diagram-container">
+                            <div class="diagram-title">🔄 Airflow DAG Execution Flow</div>
+                            <div class="mvc-flow" style="gap:10px;">
+                                <div class="mvc-box"
+                                    style="background:rgba(245,158,11,0.15);border:2px solid rgba(245,158,11,0.5);color:#F59E0B;">
+                                    extract_weather<span class="mvc-box-sub">☁️ Bronze</span></div>
+                                <div
+                                    style="display:flex;flex-direction:column;align-items:center;color:var(--text-muted);font-size:0.8rem;">
+                                    <span>┐</span><span>├→</span><span>┘</span>
+                                </div>
+                                <div class="mvc-box"
+                                    style="background:rgba(192,192,192,0.15);border:2px solid rgba(192,192,192,0.5);color:#C0C0C0;">
+                                    run_silver_layer<span class="mvc-box-sub">🥈 Silver</span></div>
+                                <span class="mvc-arrow">→</span>
+                                <div class="mvc-box"
+                                    style="background:rgba(255,215,0,0.15);border:2px solid rgba(255,215,0,0.5);color:#FFD700;">
+                                    dbt_run<span class="mvc-box-sub">🥇 Gold</span></div>
+                                <span class="mvc-arrow">→</span>
+                                <div class="mvc-box"
+                                    style="background:rgba(16,185,129,0.15);border:2px solid rgba(16,185,129,0.5);color:#10B981;">
+                                    dbt_test<span class="mvc-box-sub">✅ Validate</span></div>
+                            </div>
+                            <div class="mvc-flow" style="gap:10px; margin-top:8px;">
+                                <div class="mvc-box"
+                                    style="background:rgba(245,158,11,0.15);border:2px solid rgba(245,158,11,0.5);color:#F59E0B;">
+                                    extract_exchange<span class="mvc-box-sub">💱 Bronze</span></div>
+                            </div>
+                        </div>
+
+                        <ul class="blog-list">
+                            <li><strong>Schedule:</strong> Daily at 06:00 UTC</li>
+                            <li><strong>Retries:</strong> 2 per task, 5-minute delay</li>
+                            <li><strong>Timeout:</strong> 30 minutes per task</li>
+                            <li>Bronze tasks run <strong>in parallel</strong>, then Silver, then Gold sequentially</li>
+                        </ul>
+                    </div>
+
+                    <!-- Step 5: Docker -->
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">5️⃣ Infrastructure — Docker Compose</h3>
+                        <table class="blog-table">
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Image</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>minio</code></td>
+                                    <td>minio/minio:RELEASE.2024-11-07</td>
+                                    <td>S3-compatible object storage (ports 9000/9001)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>minio-init</code></td>
+                                    <td>minio/mc:latest</td>
+                                    <td>Creates landing bucket on startup</td>
+                                </tr>
+                                <tr>
+                                    <td><code>airflow-init</code></td>
+                                    <td>Custom Dockerfile</td>
+                                    <td>Runs <code>airflow db migrate</code> + creates admin user</td>
+                                </tr>
+                                <tr>
+                                    <td><code>airflow-webserver</code></td>
+                                    <td>Custom Dockerfile</td>
+                                    <td>Airflow UI on port 8080</td>
+                                </tr>
+                                <tr>
+                                    <td><code>airflow-scheduler</code></td>
+                                    <td>Custom Dockerfile</td>
+                                    <td>Triggers DAG runs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p><strong>Volumes:</strong> <code>minio-data</code>, <code>duckdb-data</code>,
+                            <code>airflow-logs</code>, <code>airflow-db</code> — all Docker-managed local volumes.</p>
+                    </div>
+                </section>
+
+                <!-- Tech Stack -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Technology Stack</h2>
+                    <div class="diagram-container">
+                        <div class="diagram-title">🧰 Complete Technology Map</div>
+                        <div class="tech-grid">
+                            <div class="tech-row">
+                                <span class="tech-row-label">Storage</span>
+                                <div class="tech-row-items">
+                                    <span class="tech-pill cloud-pill">MinIO (S3)</span>
+                                    <span class="tech-pill cloud-pill">DuckDB</span>
+                                </div>
+                            </div>
+                            <div class="tech-row">
+                                <span class="tech-row-label">Transform</span>
+                                <div class="tech-row-items">
+                                    <span class="tech-pill feat">dbt-duckdb 1.8.2</span>
+                                    <span class="tech-pill feat">SQL</span>
+                                </div>
+                            </div>
+                            <div class="tech-row">
+                                <span class="tech-row-label">Orchestrate</span>
+                                <div class="tech-row-items">
+                                    <span class="tech-pill backend">Apache Airflow 2.9.3</span>
+                                </div>
+                            </div>
+                            <div class="tech-row">
+                                <span class="tech-row-label">Infra</span>
+                                <div class="tech-row-items">
+                                    <span class="tech-pill devops">Docker Compose 3.8</span>
+                                    <span class="tech-pill devops">Dockerfile</span>
+                                </div>
+                            </div>
+                            <div class="tech-row">
+                                <span class="tech-row-label">Language</span>
+                                <div class="tech-row-items">
+                                    <span class="tech-pill frontend">Python 3.11</span>
+                                    <span class="tech-pill frontend">SQL</span>
+                                    <span class="tech-pill frontend">Jinja (dbt)</span>
+                                </div>
+                            </div>
+                            <div class="tech-row">
+                                <span class="tech-row-label">Libraries</span>
+                                <div class="tech-row-items">
+                                    <span class="tech-pill backend">boto3</span>
+                                    <span class="tech-pill backend">requests</span>
+                                    <span class="tech-pill backend">duckdb</span>
+                                    <span class="tech-pill backend">httpfs</span>
+                                </div>
+                            </div>
+                            <div class="tech-row">
+                                <span class="tech-row-label">APIs</span>
+                                <div class="tech-row-items">
+                                    <span class="tech-pill cloud-pill">OpenWeatherMap</span>
+                                    <span class="tech-pill cloud-pill">Frankfurter API</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Current Strengths -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Current Strengths ✅</h2>
+                    <ul class="blog-list">
+                        <li><strong>Clean Medallion Architecture</strong> — clear separation of concerns across
+                            Bronze/Silver/Gold</li>
+                        <li><strong>Fully Containerized</strong> — one <code>docker compose up</code> to run everything
+                        </li>
+                        <li><strong>Schema-on-Read with DuckDB</strong> — <code>read_json_auto</code> handles evolving
+                            JSON structures</li>
+                        <li><strong>Quality Flags</strong> — data quality tracking at both Silver and Gold layers</li>
+                        <li><strong>Idempotent Pipelines</strong> — <code>CREATE OR REPLACE TABLE</code> ensures safe
+                            re-runs</li>
+                        <li><strong>Sample Data Fallback</strong> — works without API keys for local development</li>
+                        <li><strong>dbt Testing</strong> — <code>dbt_test</code> task validates Gold model integrity
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Optimization Recommendations -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Optimization Recommendations 🔧</h2>
+
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">Quick Wins (This Week)</h3>
+                        <table class="blog-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Area</th>
+                                    <th>Recommendation</th>
+                                    <th>Impact</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Security</td>
+                                    <td>Move Fernet key / secrets to Docker Secrets or a vault — currently hardcoded in
+                                        <code>.env</code></td>
+                                    <td>🔴 High</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Silver Layer</td>
+                                    <td>Switch from <code>CREATE OR REPLACE TABLE</code> to incremental loads —
+                                        currently does a full rebuild every run</td>
+                                    <td>🔴 High</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Error Handling</td>
+                                    <td>Add Airflow <code>on_failure_callback</code> with Slack/email alerts</td>
+                                    <td>🟡 Medium</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>dbt Models</td>
+                                    <td>Change Gold model from <code>view</code> to <code>table</code> for better query
+                                        performance — views re-execute full JOIN on every read</td>
+                                    <td>🟡 Medium</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>Data Partitioning</td>
+                                    <td>Partition MinIO objects by year/month/day and Silver tables by
+                                        <code>observation_date</code></td>
+                                    <td>🟡 Medium</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">Medium-Term (Next 2–4 Weeks)</h3>
+                        <table class="blog-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Area</th>
+                                    <th>Recommendation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>6</td>
+                                    <td>New Data Sources</td>
+                                    <td>Add product catalog API, transaction logs, or inventory data to make the
+                                        "ecommerce" analytics richer</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>CI/CD Pipeline</td>
+                                    <td>Add <code>dbt build</code> to your existing GitHub Actions CI, add sqlfluff
+                                        linting for SQL quality</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>Data Quality</td>
+                                    <td>Integrate Great Expectations or dbt elementary for automated data quality
+                                        reports</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>Dashboard Layer</td>
+                                    <td>Add a Metabase or Evidence container to visualize the Gold layer — connect
+                                        directly to DuckDB</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>Monitoring</td>
+                                    <td>Add Prometheus + Grafana for Airflow metrics (task latency, failures, queue
+                                        depth)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">Long-Term (1–3 Months)</h3>
+                        <table class="blog-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Area</th>
+                                    <th>Recommendation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>11</td>
+                                    <td>Scalability</td>
+                                    <td>Migrate from SequentialExecutor to CeleryExecutor or KubernetesExecutor for
+                                        parallel task execution</td>
+                                </tr>
+                                <tr>
+                                    <td>12</td>
+                                    <td>Data Lakehouse</td>
+                                    <td>Replace DuckDB with Apache Iceberg + MotherDuck for multi-user concurrent access
+                                        and time-travel queries</td>
+                                </tr>
+                                <tr>
+                                    <td>13</td>
+                                    <td>Streaming</td>
+                                    <td>Add a real-time ingestion path using Kafka + Flink for live weather/rate updates
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>14</td>
+                                    <td>ML Integration</td>
+                                    <td>Build an ML model predicting ecommerce impact scores and serve it via a FastAPI
+                                        endpoint</td>
+                                </tr>
+                                <tr>
+                                    <td>15</td>
+                                    <td>Cloud Deployment</td>
+                                    <td>Deploy to AWS (ECS/EKS) or GCP (Cloud Run) with S3/GCS replacing MinIO</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Sprint Plan -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Next Steps — Sprint Plan 🚀</h2>
+
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">Sprint 1 (Days 1–5): Harden & Secure</h3>
+                        <ul class="blog-list">
+                            <li>Rotate secrets out of <code>.env</code> into Docker Secrets</li>
+                            <li>Add incremental Silver loads with date-based partitioning</li>
+                            <li>Add <code>on_failure_callback</code> Slack alerts to Airflow tasks</li>
+                            <li>Materialize Gold model as <code>table</code> instead of <code>view</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">Sprint 2 (Days 6–12): Enrich & Visualize</h3>
+                        <ul class="blog-list">
+                            <li>Add at least one more data source (e.g., a mock product/transactions API)</li>
+                            <li>Build a second Gold fact table (<code>fct_sales_weather_correlation</code>)</li>
+                            <li>Add Metabase/Evidence to <code>docker-compose.yml</code> for dashboards</li>
+                            <li>Add sqlfluff linting to CI pipeline</li>
+                        </ul>
+                    </div>
+
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">Sprint 3 (Days 13–20): Scale & Monitor</h3>
+                        <ul class="blog-list">
+                            <li>Switch Airflow to CeleryExecutor with Redis broker</li>
+                            <li>Add Prometheus metrics exporter + Grafana dashboard</li>
+                            <li>Write integration tests for the full pipeline (Bronze → Gold)</li>
+                            <li>Set up staging/production environment separation</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- File Index -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">File Index</h2>
+                    <table class="blog-table">
+                        <thead>
+                            <tr>
+                                <th>Path</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>docker-compose.yml</code></td>
+                                <td>Service definitions (MinIO, Airflow)</td>
+                            </tr>
+                            <tr>
+                                <td><code>Dockerfile</code></td>
+                                <td>Custom Airflow image with dbt + DuckDB</td>
+                            </tr>
+                            <tr>
+                                <td><code>.env</code></td>
+                                <td>Environment configuration</td>
+                            </tr>
+                            <tr>
+                                <td><code>ecommerce_analytics_dag.py</code></td>
+                                <td>Airflow DAG definition</td>
+                            </tr>
+                            <tr>
+                                <td><code>extract_weather.py</code></td>
+                                <td>Bronze: weather extraction</td>
+                            </tr>
+                            <tr>
+                                <td><code>extract_exchange_rates.py</code></td>
+                                <td>Bronze: exchange rate extraction</td>
+                            </tr>
+                            <tr>
+                                <td><code>minio_utils.py</code></td>
+                                <td>Shared MinIO/S3 utilities</td>
+                            </tr>
+                            <tr>
+                                <td><code>run_silver.py</code></td>
+                                <td>Silver: DuckDB SQL executor</td>
+                            </tr>
+                            <tr>
+                                <td><code>silver_init.sql</code></td>
+                                <td>Silver: schema initialization</td>
+                            </tr>
+                            <tr>
+                                <td><code>silver_weather.sql</code></td>
+                                <td>Silver: weather table</td>
+                            </tr>
+                            <tr>
+                                <td><code>silver_exchange_rates.sql</code></td>
+                                <td>Silver: exchange rates table</td>
+                            </tr>
+                            <tr>
+                                <td><code>dbt_project.yml</code></td>
+                                <td>dbt project configuration</td>
+                            </tr>
+                            <tr>
+                                <td><code>profiles.yml</code></td>
+                                <td>dbt connection profile</td>
+                            </tr>
+                            <tr>
+                                <td><code>stg_weather.sql</code></td>
+                                <td>dbt staging: weather enrichment</td>
+                            </tr>
+                            <tr>
+                                <td><code>stg_exchange_rates.sql</code></td>
+                                <td>dbt staging: rate change metrics</td>
+                            </tr>
+                            <tr>
+                                <td><code>fct_weather_currency_impact.sql</code></td>
+                                <td>dbt gold: impact analysis model</td>
+                            </tr>
+                            <tr>
+                                <td><code>query_gold_layer.py</code></td>
+                                <td>Utility: query Gold results from CLI</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Call to Action -->
+                <section class="blog-section blog-cta">
+                    <h2>Want to discuss this project?</h2>
+                    <p>Feel free to reach out or explore the source code on GitHub.</p>
+                    <div class="blog-cta-buttons">
+                        <a href="https://github.com/iimgaurav" target="_blank" class="btn btn-primary">
+                            <span class="btn-icon">⭐</span> View on GitHub
+                        </a>
+                        <a href="https://topmate.io/iimgaurav/" target="_blank" class="btn btn-talk">
+                            <span class="btn-icon">🤝</span> Lets Talk
+                        </a>
+                        <a href="index.html#contact" class="btn btn-secondary">
+                            <span class="btn-icon">📧</span> Contact Me
+                        </a>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </section>
+
+    <!-- Related Posts -->
+    <section class="section blog-related">
+        <div class="container">
+            <h2 class="section-title">More <span class="gradient-text">Projects</span></h2>
+            <p class="section-subtitle">Check out other projects on my portfolio</p>
+            <div class="blog-links">
+                <a href="index.html#projects" class="btn btn-secondary">
+                    <span class="btn-icon">🔗</span> View All Projects
+                </a>
+                <a href="blogs.html" class="btn btn-ghost">
+                    <span class="btn-icon">📚</span> Back to Blog
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terminal Footer -->
+    <footer class="terminal-footer">
+        <div class="container">
+            <div class="footer-terminal">
+                <div class="terminal-header">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-title">gaurav@portfolio:~</span>
+                </div>
+                <div class="terminal-content">
+                    <p>$ <span class="terminal-cursor">▸</span> Built with <span class="accent">HTML</span>, <span
+                            class="accent">CSS</span>, <span class="accent">JavaScript</span></p>
+                    <p>$ <span class="terminal-cursor">▸</span> Hosted on <span class="accent">Firebase</span> | <span
+                            class="accent">GitHub</span> | <span class="accent">Azure</span></p>
+                    <p>$ <span class="terminal-cursor">▸</span> © 2025 Gaurav Kumar. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>

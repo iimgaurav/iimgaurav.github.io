@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Gaurav Kumar</title>
+    <meta name="description" content="Project walkthroughs and technical blog posts by Gaurav Kumar.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Animated Background Canvas -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-monogram"><span class="logo-g">G</span><span class="logo-k">K</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#tech-stack">Tech Stack</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="blogs.html">Blog</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#certifications">Certifications</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="toggle-icon sun">☀️</span>
+                    <span class="toggle-icon moon">🌙</span>
+                </button>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Hero Section -->
+    <section class="section blog-hero">
+        <div class="container">
+            <div class="blog-hero-content">
+                <span class="section-tag">// BLOG</span>
+                <h1 class="blog-hero-title">Project <span class="gradient-text">Walkthroughs</span></h1>
+                <p class="blog-hero-subtitle">Deep dives into my data engineering projects, CI/CD automation, and
+                    technical learnings.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Posts Grid -->
+    <section class="section" id="blog-posts">
+        <div class="container">
+            <div class="blog-grid">
+                <!-- Blog Post Card 3 — Ecommerce Analytics -->
+                <a href="blog-ecommerce-analytics.html" class="blog-card blog-card-with-diagram reveal">
+                    <div class="blog-card-header">
+                        <div class="blog-card-icon">📊</div>
+                        <span class="blog-card-date">Feb 2025</span>
+                    </div>
+                    <h3 class="blog-card-title">Ecommerce Analytics Platform — Architecture Walkthrough</h3>
+                    <p class="blog-card-description">A production-grade Medallion Architecture pipeline (Bronze → Silver
+                        → Gold) with DuckDB, dbt, Apache Airflow, and MinIO — fully containerized with Docker Compose.
+                    </p>
+
+                    <!-- Medallion Architecture Diagram -->
+                    <div class="card-inline-diagram">
+                        <div class="mini-flow" style="align-items:center;">
+                            <!-- Airflow -->
+                            <div class="mini-node github">🔄 Airflow DAG — Daily 06:00 UTC</div>
+                            <div class="mini-connector">orchestrates ↓</div>
+                            <!-- Three Layers -->
+                            <div class="mini-row" style="gap:6px;">
+                                <!-- Bronze -->
+                                <div style="display:flex;flex-direction:column;gap:2px;align-items:center;">
+                                    <div class="mini-node folder">🥉 Bronze</div>
+                                    <div class="mini-node file" style="font-size:0.45rem;">☁️ Weather API</div>
+                                    <div class="mini-node file" style="font-size:0.45rem;">💱 Exchange API</div>
+                                    <div class="mini-connector">↓</div>
+                                    <div class="mini-node folder" style="font-size:0.45rem;">🪣 MinIO</div>
+                                </div>
+                                <div class="mini-connector">→</div>
+                                <!-- Silver -->
+                                <div style="display:flex;flex-direction:column;gap:2px;align-items:center;">
+                                    <div class="mini-node ci">🥈 Silver</div>
+                                    <div class="mini-node ci" style="font-size:0.45rem;">run_silver.py</div>
+                                    <div class="mini-connector">↓</div>
+                                    <div class="mini-node ci" style="font-size:0.45rem;">🦆 DuckDB</div>
+                                </div>
+                                <div class="mini-connector">→</div>
+                                <!-- Gold -->
+                                <div style="display:flex;flex-direction:column;gap:2px;align-items:center;">
+                                    <div class="mini-node cd">🥇 Gold</div>
+                                    <div class="mini-node cd" style="font-size:0.45rem;">stg_weather</div>
+                                    <div class="mini-node cd" style="font-size:0.45rem;">stg_exchange</div>
+                                    <div class="mini-connector">↓</div>
+                                    <div class="mini-node deploy" style="font-size:0.45rem;">🏆 Impact Score</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blog-card-meta">
+                        <span class="blog-tag">DuckDB</span>
+                        <span class="blog-tag">dbt</span>
+                        <span class="blog-tag">Airflow</span>
+                        <span class="blog-tag">Docker</span>
+                        <span class="blog-tag">MinIO</span>
+                    </div>
+                    <div class="blog-card-footer">
+                        <span class="read-more">Read Article →</span>
+                    </div>
+                    <span class="ripple-container"></span>
+                </a>
+
+                <!-- Blog Post Card 2 — Portfolio Architecture -->
+                <a href="blog-portfolio-architecture.html" class="blog-card reveal">
+                    <div class="blog-card-header">
+                        <div class="blog-card-icon">🏗️</div>
+                        <span class="blog-card-date">Feb 2025</span>
+                    </div>
+                    <h3 class="blog-card-title">Portfolio Architecture — Full Walkthrough</h3>
+                    <p class="blog-card-description">A deep dive into the dual-backend architecture of this portfolio —
+                        Node.js/SQL Server for local dev, Firebase Cloud Functions + Firestore for production. Includes
+                        optimisation strategies and future roadmap.</p>
+                    <div class="blog-card-meta">
+                        <span class="blog-tag">Node.js</span>
+                        <span class="blog-tag">Firebase</span>
+                        <span class="blog-tag">SQL Server</span>
+                        <span class="blog-tag">Architecture</span>
+                    </div>
+                    <div class="blog-card-footer">
+                        <span class="read-more">Read Article →</span>
+                    </div>
+                    <span class="ripple-container"></span>
+                </a>
+
+                <!-- Blog Post Card 1 — Customer Data CI/CD -->
+                <a href="blog-customer-data-ci.html" class="blog-card blog-card-with-diagram reveal">
+                    <div class="blog-card-header">
+                        <div class="blog-card-icon">🧹</div>
+                        <span class="blog-card-date">Feb 2025</span>
+                    </div>
+                    <h3 class="blog-card-title">Customer Data CI/CD — Project Walkthrough</h3>
+                    <p class="blog-card-description">A Python data cleaning pipeline with full CI/CD automation using
+                        GitHub Actions. Learn how I built end-to-end testing, multi-version matrix testing, and
+                        automated deployments.</p>
+                    <!-- CI/CD Architecture Slideshow -->
+                    <div class="card-slideshow">
+                        <img src="assets/diagrams/cicd-dark.png" alt="CI/CD Architecture - Dark Theme">
+                        <img src="assets/diagrams/cicd-3d.png" alt="CI/CD Architecture - 3D View">
+                        <div class="slideshow-dots">
+                            <span class="slideshow-dot"></span>
+                            <span class="slideshow-dot"></span>
+                        </div>
+                    </div>
+
+                    <div class="blog-card-meta">
+                        <span class="blog-tag">Python</span>
+                        <span class="blog-tag">GitHub Actions</span>
+                        <span class="blog-tag">CI/CD</span>
+                        <span class="blog-tag">pytest</span>
+                    </div>
+                    <div class="blog-card-footer">
+                        <span class="read-more">Read Article →</span>
+                    </div>
+                    <span class="ripple-container"></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terminal Footer -->
+    <footer class="terminal-footer">
+        <div class="container">
+            <div class="footer-terminal">
+                <div class="terminal-header">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-title">gaurav@portfolio:~</span>
+                </div>
+                <div class="terminal-content">
+                    <p>$ <span class="terminal-cursor">▸</span> Built with <span class="accent">HTML</span>, <span
+                            class="accent">CSS</span>, <span class="accent">JavaScript</span></p>
+                    <p>$ <span class="terminal-cursor">▸</span> Hosted on <span class="accent">Firebase</span> | <span
+                            class="accent">GitHub</span> | <span class="accent">Azure</span></p>
+                    <p>$ <span class="terminal-cursor">▸</span> © 2025 Gaurav Kumar. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>

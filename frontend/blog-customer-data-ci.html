@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Data CI/CD | Blog | Gaurav Kumar</title>
+    <meta name="description"
+        content="A detailed walkthrough of building a Python data cleaning pipeline with full CI/CD automation using GitHub Actions.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Animated Background Canvas -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-monogram"><span class="logo-g">G</span><span class="logo-k">K</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#tech-stack">Tech Stack</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="blogs.html">Blog</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#certifications">Certifications</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="toggle-icon sun">☀️</span>
+                    <span class="toggle-icon moon">🌙</span>
+                </button>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post Hero -->
+    <section class="section blog-post-hero">
+        <div class="container">
+            <a href="blogs.html" class="back-link">← Back to Blog</a>
+            <div class="blog-post-hero-content">
+                <div class="blog-post-icon">🧹</div>
+                <h1 class="blog-post-title">Customer Data CI/CD — Project Walkthrough</h1>
+                <div class="blog-post-meta">
+                    <span class="blog-post-date">📅 February 2025</span>
+                    <span class="blog-post-reading-time">⏱️ 8 min read</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Post Content -->
+    <section class="section blog-post-section">
+        <div class="container">
+            <article class="blog-post">
+                <!-- Project Overview -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Project Overview</h2>
+                    <p>A Python data cleaning pipeline with full CI/CD automation using GitHub Actions. The project cleans
+                        messy customer data (names & emails) by trimming whitespace, lowercasing, removing nulls/empties,
+                        and deduplicating.</p>
+                    <div class="blog-highlight">
+                        <strong>Repository:</strong> <a href="https://github.com/iimgaurav/customer_data_ci"
+                            target="_blank">
+                            github.com/iimgaurav/customer_data_ci
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Project Structure -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Project Structure</h2>
+                    <pre class="code-block">customer-data-ci/
+├── .github/workflows/
+│   ├── ci.yml              # Continuous Integration
+│   └── cd.yml              # Continuous Deployment
+├── src/
+│   ├── __init__.py
+│   └── transform.py        # Core cleaning logic
+├── tests/
+│   ├── __init__.py
+│   └── test_transform.py   # 15 unit tests
+├── raw_data/
+│   └── messy_sample_data.xlsx
+└── requirements.txt</pre>
+                </section>
+
+                <!-- What Was Built -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">What Was Built</h2>
+
+                    <!-- Core Logic -->
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">1. Core Logic — transform.py</h3>
+                        <p>The <code>clean_dataframe()</code> function processes customer data with the following
+                            transformations:</p>
+                        <table class="blog-table">
+                            <thead>
+                                <tr>
+                                    <th>Step</th>
+                                    <th>What it does</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Trim names</td>
+                                    <td><code>"  John Doe  " → "john doe"</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Trim emails</td>
+                                    <td><code>"  JOHN@EXAMPLE.COM  " → "john@example.com"</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Remove nulls</td>
+                                    <td>Drops rows with None/NaN emails</td>
+                                </tr>
+                                <tr>
+                                    <td>Remove empties</td>
+                                    <td>Drops rows with "" emails</td>
+                                </tr>
+                                <tr>
+                                    <td>Deduplicate</td>
+                                    <td>Keeps first occurrence per email</td>
+                                </tr>
+                                <tr>
+                                    <td>Reset index</td>
+                                    <td>Clean sequential index</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Tests -->
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">2. Tests — test_transform.py</h3>
+                        <p>15 comprehensive unit tests covering all edge cases:</p>
+                        <ul class="blog-list">
+                            <li>Trim/lowercase names and emails</li>
+                            <li>Null, NaN, and empty email removal</li>
+                            <li>Duplicate detection (case-insensitive, with spaces)</li>
+                            <li>Index reset after cleaning</li>
+                            <li>Original DataFrame immutability</li>
+                            <li>Empty DataFrame handling</li>
+                            <li>Complex multi-issue scenario</li>
+                        </ul>
+                    </div>
+
+                    <!-- CI Pipeline -->
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">3. CI Pipeline — ci.yml</h3>
+                        <p>Triggers on push/PR to main, master, develop with the following workflow:</p>
+                        <ul class="blog-list">
+                            <li>Checkout repository</li>
+                            <li>Setup Python environment</li>
+                            <li>Install dependencies</li>
+                            <li>Lint with flake8</li>
+                            <li>Run tests with coverage</li>
+                            <li>Display results</li>
+                        </ul>
+                        <p><strong>Key Features:</strong></p>
+                        <ul class="blog-list">
+                            <li>Matrix testing across Python 3.11, 3.12, 3.13</li>
+                            <li>Flake8 linting with custom ignores</li>
+                            <li>Test coverage reporting via pytest-cov</li>
+                            <li>pip caching for faster runs</li>
+                        </ul>
+                    </div>
+
+                    <!-- CD Pipeline -->
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">4. CD Pipeline — cd.yml</h3>
+                        <p>Triggers on push to main/master with three deployment stages:</p>
+                        <table class="blog-table">
+                            <thead>
+                                <tr>
+                                    <th>Job</th>
+                                    <th>What it does</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>build_and_test</strong></td>
+                                    <td>Lint → Test with coverage → Zip src/ → Upload artifact</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>deploy_dev</strong></td>
+                                    <td>Downloads artifact → Simulates DEV deployment</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>deploy_prod</strong></td>
+                                    <td>Downloads artifact → Simulates PROD deployment (requires approval)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Issues & Solutions -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Issues Fixed Along the Way</h2>
+                    <p>During development, I encountered and resolved 8 key issues:</p>
+                    <table class="blog-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Issue</th>
+                                <th>Root Cause</th>
+                                <th>Fix</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>workflows wasn't a directory</td>
+                                <td>Created as a file (0 bytes) instead of directory</td>
+                                <td>Deleted file, created directory</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>git push branch name mismatch</td>
+                                <td>Typo: pipline vs pipeline</td>
+                                <td>Used correct branch name</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>git push no upstream</td>
+                                <td>First push didn't set tracking</td>
+                                <td>--set-upstream origin</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>CI failed on Python 3.8/3.9/3.10</td>
+                                <td>numpy==2.4.2 requires Python 3.11+</td>
+                                <td>Updated matrix to [3.11, 3.12, 3.13]</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>flake8 scanning venv/</td>
+                                <td>flake8 . scans everything</td>
+                                <td>Changed to flake8 src/ tests/</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Unused imports (os, numpy, StringIO)</td>
+                                <td>Never used in code</td>
+                                <td>Removed imports</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>f-strings without placeholders</td>
+                                <td>f"static text" flagged by flake8</td>
+                                <td>Changed to plain strings</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>CD --cov=src unrecognized</td>
+                                <td>pytest-cov not installed</td>
+                                <td>Added to install step</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- CI/CD Status -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Current CI/CD Status</h2>
+                    <div class="blog-success">
+                        <span class="success-icon">✅</span>
+                        <p>Both CI and CD pipelines are green on GitHub Actions</p>
+                    </div>
+                </section>
+
+                <!-- Key Learnings -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Key Learnings</h2>
+                    <ul class="blog-list">
+                        <li><strong>Infrastructure as Code:</strong> GitHub Actions workflows define complete CI/CD pipelines
+                        </li>
+                        <li><strong>Testing Strategy:</strong> Comprehensive unit tests ensure code reliability across Python
+                            versions</li>
+                        <li><strong>Matrix Testing:</strong> Testing across multiple versions catches compatibility issues
+                            early</li>
+                        <li><strong>Automated Deployments:</strong> CD pipelines reduce manual errors and speed up releases
+                        </li>
+                        <li><strong>Data Quality:</strong> Proper ETL/ELT patterns are critical for downstream analytics</li>
+                    </ul>
+                </section>
+
+                <!-- Call to Action -->
+                <section class="blog-section blog-cta">
+                    <h2>Want to discuss this project?</h2>
+                    <p>Feel free to reach out or check out the complete source code on GitHub.</p>
+                    <div class="blog-cta-buttons">
+                        <a href="https://github.com/iimgaurav/customer_data_ci" target="_blank"
+                            class="btn btn-primary">
+                            <span class="btn-icon">⭐</span> Star on GitHub
+                        </a>
+                        <a href="index.html#contact" class="btn btn-secondary">
+                            <span class="btn-icon">📧</span> Contact Me
+                        </a>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </section>
+
+    <!-- Related Posts -->
+    <section class="section blog-related">
+        <div class="container">
+            <h2 class="section-title">More <span class="gradient-text">Projects</span></h2>
+            <p class="section-subtitle">Check out other projects on my portfolio</p>
+            <div class="blog-links">
+                <a href="index.html#projects" class="btn btn-secondary">
+                    <span class="btn-icon">🔗</span> View All Projects
+                </a>
+                <a href="blogs.html" class="btn btn-ghost">
+                    <span class="btn-icon">📚</span> Back to Blog
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terminal Footer -->
+    <footer class="terminal-footer">
+        <div class="container">
+            <div class="footer-terminal">
+                <div class="terminal-header">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-title">gaurav@portfolio:~</span>
+                </div>
+                <div class="terminal-content">
+                    <p>$ <span class="terminal-cursor">▸</span> Built with <span class="accent">HTML</span>, <span
+                            class="accent">CSS</span>, <span class="accent">JavaScript</span></p>
+                    <p>$ <span class="terminal-cursor">▸</span> Hosted on <span class="accent">Firebase</span> | <span
+                            class="accent">GitHub</span> | <span class="accent">Azure</span></p>
+                    <p>$ <span class="terminal-cursor">▸</span> © 2025 Gaurav Kumar. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>

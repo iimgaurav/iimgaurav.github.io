@@ -243,7 +243,10 @@ function initSmoothScroll() {
 }
 
 // ===== BACKEND API BASE URL =====
-const API_BASE = 'http://localhost:3000/api';
+// Auto-detect: Firebase hosting uses /api, local dev uses localhost:3000
+const API_BASE = window.location.hostname === 'localhost' && window.location.port !== ''
+    ? 'http://localhost:3000/api'
+    : '/api';
 
 // ===== TOAST NOTIFICATION =====
 function showToast(message, type = 'success') {

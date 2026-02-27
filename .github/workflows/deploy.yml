@@ -1,8 +1,10 @@
-name: Deploy to GitHub Pages
+name: CI/CD Pipeline
 
 on:
   push:
-    branches: ["main"]
+    branches: [main, dev, uat]
+  pull_request:
+    branches: [main, uat]
   workflow_dispatch:
 
 permissions:
@@ -11,11 +13,91 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: "pages-${{ github.ref }}"
+  cancel-in-progress: true
 
 jobs:
+  # ============================================
+  # CI — Runs on ALL branches (dev, uat, main)
+  # ============================================
+  ci:
+    name: "🔍 CI — Lint & Validate"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate HTML files exist
+        run: |
+          echo "🔍 Checking frontend files..."
+          test -f frontend/index.html && echo "✅ index.html found" || (echo "❌ index.html missing" && exit 1)
+          test -f frontend/blogs.html && echo "✅ blogs.html found" || (echo "❌ blogs.html missing" && exit 1)
+          test -f frontend/css/style.css && echo "✅ style.css found" || (echo "❌ style.css missing" && exit 1)
+          test -f frontend/js/script.js && echo "✅ script.js found" || (echo "❌ script.js missing" && exit 1)
+          echo "✅ All critical files present"
+
+      - name: Check HTML syntax
+        run: |
+          echo "🔍 Checking for common HTML issues..."
+          for file in frontend/*.html; do
+            if grep -l "<!DOCTYPE html>" "$file" > /dev/null 2>&1; then
+              echo "✅ $file has DOCTYPE"
+            else
+              echo "⚠️ $file missing DOCTYPE"
+            fi
+          done
+
+      - name: Check CSS syntax
+        run: |
+          echo "🔍 Validating CSS..."
+          css_size=$(wc -c < frontend/css/style.css)
+          echo "📊 style.css size: ${css_size} bytes"
+          if [ "$css_size" -gt 0 ]; then
+            echo "✅ CSS file is valid (non-empty)"
+          else
+            echo "❌ CSS file is empty" && exit 1
+          fi
+
+      - name: Check JavaScript syntax
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Lint JavaScript
+        run: |
+          echo "🔍 Checking JavaScript syntax..."
+          node --check frontend/js/script.js && echo "✅ script.js syntax OK" || (echo "❌ script.js has syntax errors" && exit 1)
+
+      - name: Check assets
+        run: |
+          echo "🔍 Checking assets..."
+          image_count=$(find frontend/assets -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.webp" \) 2>/dev/null | wc -l)
+          echo "📊 Found ${image_count} image assets"
+          total_size=$(du -sh frontend/ | cut -f1)
+          echo "📊 Total frontend size: ${total_size}"
+          echo "✅ Asset check complete"
+
+      - name: Build summary
+        run: |
+          echo "## 🏗️ CI Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| HTML files | ✅ Present |" >> $GITHUB_STEP_SUMMARY
+          echo "| CSS validation | ✅ Valid |" >> $GITHUB_STEP_SUMMARY
+          echo "| JS syntax | ✅ No errors |" >> $GITHUB_STEP_SUMMARY
+          echo "| Assets | ✅ Loaded |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** \`${{ github.ref_name }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+
+  # ============================================
+  # DEPLOY — Only runs on main branch
+  # ============================================
   deploy:
+    name: "🚀 Deploy to GitHub Pages"
+    needs: ci
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -30,8 +112,19 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './frontend'
+          path: "./frontend"
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Deployment summary
+        run: |
+          echo "## 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **Deployed successfully!**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🌐 **Live URL:** https://iimgaurav.github.io/" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** \`main\`" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY

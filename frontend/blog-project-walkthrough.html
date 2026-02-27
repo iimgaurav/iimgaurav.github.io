@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Project Walkthrough | Blog | Gaurav Kumar</title>
+    <meta name="description"
+        content="Complete walkthrough of the portfolio project — architecture, design system, CI/CD pipeline, and GitHub Pages deployment.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-wrapper">
+                    <span class="logo-monogram"><span class="logo-g">G</span><span class="logo-k">K</span></span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="blogs.html" class="nav-link active">Blog</a>
+                <a href="certifications.html" class="nav-link">Certifications</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+        <div class="container">
+            <a href="blogs.html" class="blog-back-link">← Back to Blog</a>
+            <div class="blog-hero-meta">
+                <span class="blog-tag">Architecture</span>
+                <span class="blog-tag">CI/CD</span>
+                <span class="blog-tag">GitHub Pages</span>
+                <span class="blog-tag">Firebase</span>
+                <span class="blog-tag">Node.js</span>
+            </div>
+            <h1 class="blog-hero-title">Portfolio Project — Complete Walkthrough</h1>
+            <p class="blog-hero-description">How I built a production-grade portfolio with dual-backend architecture,
+                3 blog posts, interactive diagrams, hero banner slider, and a full CI/CD pipeline — deployed to
+                GitHub Pages.</p>
+            <div class="blog-hero-stats">
+                <span>📅 Feb 2025</span>
+                <span>⏱️ 12 min read</span>
+                <span>📁 29 files</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <article class="blog-content">
+        <div class="container">
+
+            <!-- ============== SECTION 1: OVERVIEW ============== -->
+            <section class="blog-section">
+                <h2>🎯 Overview</h2>
+                <p>This portfolio is a full-stack web application showcasing my work as a Data Engineer. It features a
+                    dual-backend architecture (Node.js for local dev, Firebase for production), an interactive blog
+                    system with architecture diagrams, a hero banner slider, and a CI/CD pipeline that auto-deploys
+                    on every push to main.</p>
+
+                <div class="blog-callout">
+                    <strong>🌐 Live at:</strong>
+                    <a href="https://iimgaurav.github.io/" target="_blank">iimgaurav.github.io</a> |
+                    <strong>📦 Repo:</strong>
+                    <a href="https://github.com/iimgaurav/iimgaurav.github.io" target="_blank">GitHub</a>
+                </div>
+            </section>
+
+            <!-- ============== SECTION 2: ARCHITECTURE ============== -->
+            <section class="blog-section">
+                <h2>🏗️ Project Architecture</h2>
+
+                <!-- Architecture Diagram -->
+                <div class="architecture-diagram" style="margin: 24px 0;">
+                    <div class="arch-flow" style="display:flex; flex-direction:column; gap:16px; align-items:center;">
+
+                        <!-- Row 1: Branches -->
+                        <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
+                            <div class="mini-node ci" style="font-size:0.75rem; padding:8px 16px;">🔧 dev branch</div>
+                            <div class="mini-connector" style="font-size:1rem;">→</div>
+                            <div class="mini-node cd" style="font-size:0.75rem; padding:8px 16px;">🧪 uat branch</div>
+                            <div class="mini-connector" style="font-size:1rem;">→</div>
+                            <div class="mini-node deploy" style="font-size:0.75rem; padding:8px 16px;">🚀 main branch
+                            </div>
+                        </div>
+
+                        <div class="mini-connector" style="font-size:1.2rem;">↓</div>
+
+                        <!-- Row 2: CI/CD -->
+                        <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
+                            <div class="mini-node github"
+                                style="font-size:0.75rem; padding:10px 20px; border: 2px solid rgba(139,92,246,0.5);">
+                                🔍 CI: Lint & Validate (all branches)
+                            </div>
+                            <div class="mini-connector" style="font-size:1rem;">→</div>
+                            <div class="mini-node deploy"
+                                style="font-size:0.75rem; padding:10px 20px; border: 2px solid rgba(239,68,68,0.5);">
+                                🚀 CD: Deploy (main only)
+                            </div>
+                        </div>
+
+                        <div class="mini-connector" style="font-size:1.2rem;">↓</div>
+
+                        <!-- Row 3: Production -->
+                        <div class="mini-node folder"
+                            style="font-size:0.85rem; padding:12px 24px; border: 2px solid rgba(245,158,11,0.5);">
+                            🌐 iimgaurav.github.io — Live Portfolio
+                        </div>
+                    </div>
+                </div>
+
+                <h3>File Structure</h3>
+                <div class="blog-table-wrapper">
+                    <table class="blog-table">
+                        <thead>
+                            <tr>
+                                <th>Directory</th>
+                                <th>Files</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>frontend/</code></td>
+                                <td>6 HTML pages</td>
+                                <td>Main website — index, blogs, certifications, 3 blog posts</td>
+                            </tr>
+                            <tr>
+                                <td><code>frontend/css/</code></td>
+                                <td><code>style.css</code> (3,200+ lines)</td>
+                                <td>Complete design system with dark theme</td>
+                            </tr>
+                            <tr>
+                                <td><code>frontend/js/</code></td>
+                                <td><code>script.js</code></td>
+                                <td>Animations, canvas particles, interactions</td>
+                            </tr>
+                            <tr>
+                                <td><code>frontend/assets/</code></td>
+                                <td>6 PNG images</td>
+                                <td>Hero slider + blog card architecture diagrams</td>
+                            </tr>
+                            <tr>
+                                <td><code>backend/</code></td>
+                                <td>8 files (MVC)</td>
+                                <td>Node.js/Express API — routes, controllers, middleware</td>
+                            </tr>
+                            <tr>
+                                <td><code>functions/</code></td>
+                                <td>3 files</td>
+                                <td>Firebase Cloud Functions for production API</td>
+                            </tr>
+                            <tr>
+                                <td><code>.github/workflows/</code></td>
+                                <td><code>deploy.yml</code></td>
+                                <td>CI/CD pipeline — lint, validate, deploy</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ============== SECTION 3: FRONTEND ============== -->
+            <section class="blog-section">
+                <h2>🎨 Frontend — Pages & Components</h2>
+
+                <h3>Main Portfolio (index.html)</h3>
+                <p>The main landing page has 8 sections with a rich, animated dark-theme design:</p>
+
+                <div class="blog-table-wrapper">
+                    <table class="blog-table">
+                        <thead>
+                            <tr>
+                                <th>Section</th>
+                                <th>Features</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Hero</strong></td>
+                                <td>Animated canvas background + gradient title + 5 CTA buttons</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hero Slider</strong></td>
+                                <td>4 auto-sliding images (3s each) with frosted-glass captions + animated dots</td>
+                            </tr>
+                            <tr>
+                                <td><strong>About</strong></td>
+                                <td>Data Engineer @ TCS profile card</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tools</strong></td>
+                                <td>6-category tech stack grid (Processing, Storage, BI, Orchestration, DevOps,
+                                    Monitoring)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Projects</strong></td>
+                                <td>4 pipeline cards with GitHub links + hover animations</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Experience</strong></td>
+                                <td>Career timeline with role details</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Education</strong></td>
+                                <td>MCA + BSc (CS) with grades</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Contact</strong></td>
+                                <td>Form + email/phone + social links</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Hero Banner Slider</h3>
+                <p>The slider showcases 4 generated architecture images with smooth cross-fade transitions:</p>
+
+                <div class="card-slideshow" style="aspect-ratio:21/9; max-width:100%; margin: 20px 0;">
+                    <img src="assets/diagrams/hero-1.png" alt="Data Engineering Workspace">
+                    <img src="assets/diagrams/hero-2.png" alt="Medallion Architecture">
+                    <div class="slideshow-dots">
+                        <span class="slideshow-dot"></span>
+                        <span class="slideshow-dot"></span>
+                    </div>
+                </div>
+
+                <div class="blog-callout">
+                    <strong>✨ Key animations:</strong> Zoom-in on slide entry • frosted-glass caption bars •
+                    dot indicators that morph from circles → purple pills • gradient overlay for readability
+                </div>
+
+                <h3>Blog System</h3>
+                <p>3 full-length blog posts, each with interactive HTML/CSS architecture diagrams:</p>
+
+                <div class="blog-table-wrapper">
+                    <table class="blog-table">
+                        <thead>
+                            <tr>
+                                <th>Blog Post</th>
+                                <th>Tags</th>
+                                <th>Inline Diagram</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Ecommerce Analytics Platform</strong></td>
+                                <td>DuckDB, dbt, Airflow, Docker, MinIO</td>
+                                <td>Medallion Architecture (Bronze → Silver → Gold)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Portfolio Architecture</strong></td>
+                                <td>Node.js, Firebase, SQL Server, Architecture</td>
+                                <td>System overview + MVC flow + Tech stack grid</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Customer Data CI/CD</strong></td>
+                                <td>Python, GitHub Actions, CI/CD, pytest</td>
+                                <td>Image slideshow (2 images, 3s auto-cycle)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ============== SECTION 4: DESIGN ============== -->
+            <section class="blog-section">
+                <h2>🎨 Design System</h2>
+
+                <h3>Color Palette</h3>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; margin:16px 0;">
+                    <div
+                        style="width:60px; height:60px; background:#0a0f1e; border-radius:8px; border:1px solid rgba(255,255,255,0.1);">
+                    </div>
+                    <div style="width:60px; height:60px; background:#8b5cf6; border-radius:8px;"></div>
+                    <div style="width:60px; height:60px; background:#06b6d4; border-radius:8px;"></div>
+                    <div style="width:60px; height:60px; background:#10b981; border-radius:8px;"></div>
+                    <div style="width:60px; height:60px; background:#f59e0b; border-radius:8px;"></div>
+                    <div style="width:60px; height:60px; background:#ef4444; border-radius:8px;"></div>
+                </div>
+
+                <div class="blog-table-wrapper">
+                    <table class="blog-table">
+                        <thead>
+                            <tr>
+                                <th>Token</th>
+                                <th>Color</th>
+                                <th>Usage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>--bg-primary</code></td>
+                                <td><code>#0a0f1e</code></td>
+                                <td>Main background</td>
+                            </tr>
+                            <tr>
+                                <td><code>--accent</code></td>
+                                <td><code>#8b5cf6</code></td>
+                                <td>Purple accent, buttons, links</td>
+                            </tr>
+                            <tr>
+                                <td><code>--text-primary</code></td>
+                                <td><code>#e2e8f0</code></td>
+                                <td>Body text</td>
+                            </tr>
+                            <tr>
+                                <td><code>--border-color</code></td>
+                                <td><code>rgba(255,255,255,0.08)</code></td>
+                                <td>Subtle borders</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Typography</h3>
+                <ul>
+                    <li><strong>Headings & Body:</strong> Inter (300–700 weight)</li>
+                    <li><strong>Code & Monospace:</strong> JetBrains Mono</li>
+                </ul>
+
+                <h3>CSS Highlights (3,200+ lines)</h3>
+                <ul>
+                    <li>Animated canvas background with connecting particles</li>
+                    <li>Glassmorphism cards with <code>backdrop-filter: blur()</code></li>
+                    <li>Gradient buttons with hover scale + glow</li>
+                    <li>Hero slider with CSS-only cross-fade + zoom</li>
+                    <li>Blog card image slideshow with dot indicators</li>
+                    <li>Interactive architecture diagrams (HTML/CSS)</li>
+                    <li>Reveal-on-scroll animations via IntersectionObserver</li>
+                    <li>Fully responsive — mobile-first breakpoints</li>
+                </ul>
+            </section>
+
+            <!-- ============== SECTION 5: BACKEND ============== -->
+            <section class="blog-section">
+                <h2>🖥️ Backend Architecture</h2>
+
+                <h3>Dual-Backend Strategy</h3>
+
+                <div style="display:flex; gap:16px; flex-wrap:wrap; margin:20px 0;">
+                    <!-- Local Dev -->
+                    <div
+                        style="flex:1; min-width:250px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:12px; padding:20px;">
+                        <h4 style="color:#10b981; margin:0 0 12px;">🖥️ Local Development</h4>
+                        <p style="font-size:0.85rem; margin:0 0 8px;"><strong>Stack:</strong> Node.js + Express</p>
+                        <p style="font-size:0.85rem; margin:0 0 8px;"><strong>DB:</strong> SQL Server (Windows Auth)
+                        </p>
+                        <p style="font-size:0.85rem; margin:0 0 8px;"><strong>Port:</strong> localhost:3000</p>
+                        <p style="font-size:0.8rem; color:var(--text-muted); margin:0;">MVC pattern — routes,
+                            controllers, middleware</p>
+                    </div>
+                    <!-- Production -->
+                    <div
+                        style="flex:1; min-width:250px; background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); border-radius:12px; padding:20px;">
+                        <h4 style="color:#f59e0b; margin:0 0 12px;">☁️ Production</h4>
+                        <p style="font-size:0.85rem; margin:0 0 8px;"><strong>Hosting:</strong> GitHub Pages</p>
+                        <p style="font-size:0.85rem; margin:0 0 8px;"><strong>API:</strong> Firebase Cloud Functions
+                        </p>
+                        <p style="font-size:0.85rem; margin:0 0 8px;"><strong>DB:</strong> Firestore (NoSQL)</p>
+                        <p style="font-size:0.8rem; color:var(--text-muted); margin:0;">Auto-deploys via GitHub Actions
+                        </p>
+                    </div>
+                </div>
+
+                <h3>API Endpoints</h3>
+                <div class="blog-table-wrapper">
+                    <table class="blog-table">
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Endpoint</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>POST</code></td>
+                                <td><code>/api/contact</code></td>
+                                <td>Submit contact form</td>
+                            </tr>
+                            <tr>
+                                <td><code>POST</code></td>
+                                <td><code>/api/visitors</code></td>
+                                <td>Track visitor analytics</td>
+                            </tr>
+                            <tr>
+                                <td><code>GET</code></td>
+                                <td><code>/api/health</code></td>
+                                <td>Health check</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ============== SECTION 6: CI/CD ============== -->
+            <section class="blog-section">
+                <h2>⚙️ CI/CD Pipeline</h2>
+
+                <h3>Branch Strategy</h3>
+
+                <!-- CI/CD Flow Diagram -->
+                <div style="margin:20px 0;">
+                    <div style="display:flex; flex-direction:column; gap:12px; align-items:center;">
+                        <div
+                            style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; align-items:center;">
+                            <div class="mini-node ci" style="padding:10px 20px; font-size:0.8rem;">🔧 dev</div>
+                            <div style="color:var(--text-muted);">→ PR →</div>
+                            <div class="mini-node cd" style="padding:10px 20px; font-size:0.8rem;">🧪 uat</div>
+                            <div style="color:var(--text-muted);">→ PR →</div>
+                            <div class="mini-node deploy" style="padding:10px 20px; font-size:0.8rem;">🚀 main</div>
+                            <div style="color:var(--text-muted);">→</div>
+                            <div class="mini-node folder" style="padding:10px 20px; font-size:0.8rem;">🌐 Live Site
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-table-wrapper">
+                    <table class="blog-table">
+                        <thead>
+                            <tr>
+                                <th>Branch</th>
+                                <th>CI</th>
+                                <th>CD</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>dev</code></td>
+                                <td>✅ Lint & validate</td>
+                                <td>❌</td>
+                                <td>Active development</td>
+                            </tr>
+                            <tr>
+                                <td><code>uat</code></td>
+                                <td>✅ Lint & validate</td>
+                                <td>❌</td>
+                                <td>User acceptance testing</td>
+                            </tr>
+                            <tr>
+                                <td><code>main</code></td>
+                                <td>✅ Lint & validate</td>
+                                <td>✅ Deploy to Pages</td>
+                                <td>Production</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>CI Checks (all branches)</h3>
+                <div
+                    style="background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.2); border-radius:10px; padding:16px; margin:16px 0;">
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:8px;">
+                        <div style="font-size:0.85rem;">✅ HTML file existence</div>
+                        <div style="font-size:0.85rem;">✅ DOCTYPE validation</div>
+                        <div style="font-size:0.85rem;">✅ CSS non-empty check</div>
+                        <div style="font-size:0.85rem;">✅ JS syntax (<code>node --check</code>)</div>
+                        <div style="font-size:0.85rem;">✅ Asset verification</div>
+                        <div style="font-size:0.85rem;">✅ GitHub Step Summary</div>
+                    </div>
+                </div>
+
+                <h3>Workflow File</h3>
+                <div class="blog-code">
+                    <pre><code>name: CI/CD Pipeline
+on:
+  push:
+    branches: [main, dev, uat]
+  pull_request:
+    branches: [main, uat]
+
+jobs:
+  ci:           # Runs on ALL branches
+    steps:
+      - Checkout code
+      - Validate HTML files
+      - Check CSS syntax
+      - Lint JavaScript
+      - Verify assets
+      - Build summary report
+
+  deploy:       # Runs on MAIN only
+    needs: ci
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - Upload frontend/ artifact
+      - Deploy to GitHub Pages</code></pre>
+                </div>
+            </section>
+
+            <!-- ============== SECTION 7: DEPLOYMENT ============== -->
+            <section class="blog-section">
+                <h2>🚀 Deployment</h2>
+
+                <div class="blog-table-wrapper">
+                    <table class="blog-table">
+                        <thead>
+                            <tr>
+                                <th>Platform</th>
+                                <th>URL</th>
+                                <th>What's Deployed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>GitHub Pages</strong></td>
+                                <td><a href="https://iimgaurav.github.io/" target="_blank">iimgaurav.github.io</a></td>
+                                <td>Frontend (6 HTML, CSS, JS, 6 images)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>GitHub Repo</strong></td>
+                                <td><a href="https://github.com/iimgaurav/iimgaurav.github.io" target="_blank">Source
+                                        Code</a></td>
+                                <td>Full codebase (29 files, 3 branches)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ============== SECTION 8: ASSETS ============== -->
+            <section class="blog-section">
+                <h2>🎬 Generated Assets</h2>
+                <p>6 architecture diagram images generated for the hero slider and blog cards:</p>
+
+                <div class="blog-table-wrapper">
+                    <table class="blog-table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Description</th>
+                                <th>Used In</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>hero-1.png</code></td>
+                                <td>Data Engineering Workspace — holographic pipelines</td>
+                                <td>Hero Slider (Slide 1)</td>
+                            </tr>
+                            <tr>
+                                <td><code>hero-2.png</code></td>
+                                <td>Medallion Architecture — Bronze/Silver/Gold glow</td>
+                                <td>Hero Slider (Slide 2)</td>
+                            </tr>
+                            <tr>
+                                <td><code>hero-3.png</code></td>
+                                <td>Cloud & CI/CD Infrastructure</td>
+                                <td>Hero Slider (Slide 3)</td>
+                            </tr>
+                            <tr>
+                                <td><code>hero-4.png</code></td>
+                                <td>CI/CD 3D Isometric Architecture</td>
+                                <td>Hero Slider (Slide 4)</td>
+                            </tr>
+                            <tr>
+                                <td><code>cicd-dark.png</code></td>
+                                <td>CI/CD Architecture — Dark theme</td>
+                                <td>Blog Card Slideshow</td>
+                            </tr>
+                            <tr>
+                                <td><code>cicd-3d.png</code></td>
+                                <td>CI/CD Architecture — 3D craft style</td>
+                                <td>Blog Card Slideshow</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ============== SECTION 9: FUTURE ============== -->
+            <section class="blog-section">
+                <h2>🔮 Future Optimizations</h2>
+                <div
+                    style="background:rgba(139,92,246,0.08); border:1px solid rgba(139,92,246,0.2); border-radius:10px; padding:20px; margin:16px 0;">
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:12px;">
+                        <div style="font-size:0.85rem;">🔲 Add Lighthouse CI for performance scoring</div>
+                        <div style="font-size:0.85rem;">🔲 Add HTML W3C validation to CI</div>
+                        <div style="font-size:0.85rem;">🔲 Set up branch protection rules (require PR reviews)</div>
+                        <div style="font-size:0.85rem;">🔲 Add custom domain via CNAME</div>
+                        <div style="font-size:0.85rem;">🔲 Persist dark/light theme toggle</div>
+                        <div style="font-size:0.85rem;">🔲 Add blog post RSS feed</div>
+                        <div style="font-size:0.85rem;">🔲 Firebase Hosting as second CD target</div>
+                        <div style="font-size:0.85rem;">🔲 Add Playwright E2E tests to CI</div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </article>
+
+    <!-- Terminal Footer -->
+    <footer class="terminal-footer">
+        <div class="container">
+            <div class="terminal-line">
+                <span class="terminal-prompt">$</span>
+                <span class="terminal-command">▸ Built with HTML, CSS, JavaScript</span>
+            </div>
+            <div class="terminal-line">
+                <span class="terminal-prompt">$</span>
+                <span class="terminal-command">▸ Hosted on GitHub Pages | Firebase</span>
+            </div>
+            <p class="footer-copy">© 2025 Gaurav Kumar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

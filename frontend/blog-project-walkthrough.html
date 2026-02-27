@@ -169,6 +169,127 @@
                         </tbody>
                     </table>
                 </div>
+
+                <h3>📂 Full Folder Tree</h3>
+                <div class="blog-code" style="border: 1px solid rgba(139,92,246,0.3);">
+                    <pre><code style="color:#e6edf3; line-height:2;">
+📦 <span style="color:#f59e0b; font-weight:700;">iimgaurav.github.io/</span>
+├── 📁 <span style="color:#8b5cf6;">.github/workflows/</span>
+│   └── 📄 <span style="color:#10b981;">deploy.yml</span>              ← CI/CD Pipeline
+├── 📁 <span style="color:#8b5cf6;">frontend/</span>                   ← Deployed to GitHub Pages
+│   ├── 📁 <span style="color:#8b5cf6;">assets/diagrams/</span>
+│   │   ├── 🖼️ hero-1.png             ← Data Engineering Workspace
+│   │   ├── 🖼️ hero-2.png             ← Medallion Architecture
+│   │   ├── 🖼️ hero-3.png             ← Cloud & CI/CD
+│   │   ├── 🖼️ hero-4.png             ← CI/CD 3D Isometric
+│   │   ├── 🖼️ cicd-dark.png          ← Blog Slideshow (Dark)
+│   │   └── 🖼️ cicd-3d.png            ← Blog Slideshow (3D)
+│   ├── 📁 <span style="color:#8b5cf6;">css/</span>
+│   │   └── 📄 <span style="color:#06b6d4;">style.css</span>              ← 3,500+ lines design system
+│   ├── 📁 <span style="color:#8b5cf6;">js/</span>
+│   │   └── 📄 <span style="color:#f59e0b;">script.js</span>             ← Canvas, animations, interactions
+│   ├── 📄 <span style="color:#10b981;">index.html</span>               ← Main portfolio (8 sections)
+│   ├── 📄 <span style="color:#10b981;">blogs.html</span>               ← Blog listing (4 cards)
+│   ├── 📄 <span style="color:#10b981;">certifications.html</span>      ← Certifications page
+│   ├── 📄 <span style="color:#10b981;">blog-project-walkthrough.html</span>   ← This page!
+│   ├── 📄 <span style="color:#10b981;">blog-ecommerce-analytics.html</span>  ← Medallion Architecture
+│   ├── 📄 <span style="color:#10b981;">blog-portfolio-architecture.html</span> ← Architecture Deep Dive
+│   └── 📄 <span style="color:#10b981;">blog-customer-data-ci.html</span>     ← CI/CD Walkthrough
+├── 📁 <span style="color:#8b5cf6;">backend/</span>                   ← Node.js/Express API (MVC)
+│   ├── 📄 <span style="color:#f59e0b;">server.js</span>               ← Express entry point
+│   ├── 📁 config/  │  📁 routes/  │  📁 controllers/  │  📁 middleware/
+│   └── 📁 scripts/
+├── 📁 <span style="color:#8b5cf6;">functions/</span>                 ← Firebase Cloud Functions
+│   └── 📄 <span style="color:#f59e0b;">index.js</span>                ← Production API
+├── ⚙️ <span style="color:#ef4444;">firebase.json</span>              ← Firebase config
+├── ⚙️ <span style="color:#ef4444;">firestore.rules</span>            ← Security rules
+└── 📄 <span style="color:#06b6d4;">README.md</span>                  ← Project docs
+                    </code></pre>
+                </div>
+
+                <h3>🚀 Deployment Structure</h3>
+                <div style="margin: 24px 0;">
+                    <div style="display:flex; flex-direction:column; gap:0; align-items:center;">
+
+                        <!-- Step 1: Developer -->
+                        <div class="mini-node ci" style="padding:12px 28px; font-size:0.8rem; font-weight:600;">
+                            👨‍💻 Developer pushes to <code style="color:#10b981;">dev</code> branch
+                        </div>
+                        <div
+                            style="width:2px; height:20px; background:linear-gradient(to bottom, rgba(6,182,212,0.5), rgba(139,92,246,0.5));">
+                        </div>
+
+                        <!-- Step 2: PR to UAT -->
+                        <div class="mini-node ci" style="padding:12px 28px; font-size:0.8rem;">
+                            📋 Pull Request → <code style="color:#f59e0b;">uat</code> branch (review & test)
+                        </div>
+                        <div
+                            style="width:2px; height:20px; background:linear-gradient(to bottom, rgba(139,92,246,0.5), rgba(245,158,11,0.5));">
+                        </div>
+
+                        <!-- Step 3: PR to Main -->
+                        <div class="mini-node cd" style="padding:12px 28px; font-size:0.8rem;">
+                            ✅ Approved → Merge to <code style="color:#10b981;">main</code> branch
+                        </div>
+                        <div
+                            style="width:2px; height:20px; background:linear-gradient(to bottom, rgba(245,158,11,0.5), rgba(16,185,129,0.5));">
+                        </div>
+
+                        <!-- Step 4: CI -->
+                        <div
+                            style="background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:12px; padding:16px 24px; text-align:center;">
+                            <div
+                                style="font-family:var(--font-mono); font-size:0.85rem; font-weight:600; color:#10b981; margin-bottom:8px;">
+                                🔍 CI Pipeline — GitHub Actions
+                            </div>
+                            <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center;">
+                                <span class="blog-tag"
+                                    style="background:rgba(16,185,129,0.2); color:#10b981; border-color:rgba(16,185,129,0.3);">HTML
+                                    Check</span>
+                                <span class="blog-tag"
+                                    style="background:rgba(16,185,129,0.2); color:#10b981; border-color:rgba(16,185,129,0.3);">CSS
+                                    Valid</span>
+                                <span class="blog-tag"
+                                    style="background:rgba(16,185,129,0.2); color:#10b981; border-color:rgba(16,185,129,0.3);">JS
+                                    Lint</span>
+                                <span class="blog-tag"
+                                    style="background:rgba(16,185,129,0.2); color:#10b981; border-color:rgba(16,185,129,0.3);">Assets
+                                    OK</span>
+                            </div>
+                        </div>
+                        <div
+                            style="width:2px; height:20px; background:linear-gradient(to bottom, rgba(16,185,129,0.5), rgba(239,68,68,0.5));">
+                        </div>
+
+                        <!-- Step 5: CD -->
+                        <div
+                            style="background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); border-radius:12px; padding:16px 24px; text-align:center;">
+                            <div
+                                style="font-family:var(--font-mono); font-size:0.85rem; font-weight:600; color:#ef4444; margin-bottom:8px;">
+                                🚀 CD Pipeline — Deploy
+                            </div>
+                            <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center;">
+                                <span class="blog-tag"
+                                    style="background:rgba(239,68,68,0.2); color:#ef4444; border-color:rgba(239,68,68,0.3);">Upload
+                                    Artifact</span>
+                                <span class="blog-tag"
+                                    style="background:rgba(239,68,68,0.2); color:#ef4444; border-color:rgba(239,68,68,0.3);">Deploy
+                                    Pages</span>
+                            </div>
+                        </div>
+                        <div
+                            style="width:2px; height:20px; background:linear-gradient(to bottom, rgba(239,68,68,0.5), rgba(245,158,11,0.5));">
+                        </div>
+
+                        <!-- Step 6: Live -->
+                        <div class="mini-node deploy"
+                            style="padding:14px 32px; font-size:0.9rem; font-weight:700; border:2px solid rgba(245,158,11,0.5);">
+                            🌐 Live at <a href="https://iimgaurav.github.io/" target="_blank"
+                                style="color:#f59e0b;">iimgaurav.github.io</a>
+                        </div>
+                    </div>
+                </div>
+
             </section>
 
             <!-- ============== SECTION 3: FRONTEND ============== -->

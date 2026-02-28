@@ -12,6 +12,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
         rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -23,7 +24,7 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
-                <span class="logo-monogram"><span class="logo-g">G</span><span class="logo-k">K</span></span>
+                <img src="assets/logo.png" alt="Gaurav Kumar" class="nav-logo-img">
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html#about">About</a></li>
@@ -213,7 +214,8 @@
 └── exchange_rates/2026-02-26/
     └── rates.json</pre>
                         <p>Each JSON is enriched with pipeline metadata: <code>_extracted_at</code>,
-                            <code>_source</code>, <code>_city_label</code> / <code>_base_currency</code>.</p>
+                            <code>_source</code>, <code>_city_label</code> / <code>_base_currency</code>.
+                        </p>
                     </div>
 
                     <!-- Step 2: Silver -->
@@ -235,13 +237,15 @@
                                     <td><code>silver_weather.sql</code></td>
                                     <td>Reads all <code>s3://landing/weather/**/*.json</code> via
                                         <code>read_json_auto</code>, extracts columns (city, temp, humidity, wind,
-                                        etc.), adds <code>quality_flag</code>.</td>
+                                        etc.), adds <code>quality_flag</code>.
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><code>silver_exchange_rates.sql</code></td>
                                     <td>Reads <code>s3://landing/exchange_rates/**/*.json</code>, unpivots the rates MAP
                                         into long format (one row per currency pair), adds <code>inverse_rate</code> and
-                                        <code>quality_flag</code>.</td>
+                                        <code>quality_flag</code>.
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><code>run_silver.py</code></td>
@@ -253,7 +257,8 @@
                         <div class="blog-success">
                             <span class="success-icon">✅</span>
                             <p>Result: Two clean tables — <code>silver.weather</code> and
-                                <code>silver.exchange_rates</code> in <code>data/analytics.duckdb</code></p>
+                                <code>silver.exchange_rates</code> in <code>data/analytics.duckdb</code>
+                            </p>
                         </div>
                     </div>
 
@@ -272,7 +277,8 @@
                                     <td><code>stg_weather.sql</code></td>
                                     <td>Adds computed fields: <code>temp_range_celsius</code>, weather severity score
                                         (1–5 scale), <code>is_extreme_weather</code> flag. Filters to
-                                        <code>quality_flag = 'OK'</code> only.</td>
+                                        <code>quality_flag = 'OK'</code> only.
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><code>stg_exchange_rates.sql</code></td>
@@ -382,7 +388,8 @@ extract_exchange ──┘</pre>
                             </tbody>
                         </table>
                         <p><strong>Volumes:</strong> <code>minio-data</code>, <code>duckdb-data</code>,
-                            <code>airflow-logs</code>, <code>airflow-db</code> — all Docker-managed local volumes.</p>
+                            <code>airflow-logs</code>, <code>airflow-db</code> — all Docker-managed local volumes.
+                        </p>
                     </div>
                 </section>
 
@@ -486,7 +493,8 @@ extract_exchange ──┘</pre>
                                     <td>1</td>
                                     <td>Security</td>
                                     <td>Move Fernet key / secrets to Docker Secrets or a vault — currently hardcoded in
-                                        <code>.env</code></td>
+                                        <code>.env</code>
+                                    </td>
                                     <td>🔴 High</td>
                                 </tr>
                                 <tr>
@@ -513,7 +521,8 @@ extract_exchange ──┘</pre>
                                     <td>5</td>
                                     <td>Data Partitioning</td>
                                     <td>Partition MinIO objects by year/month/day and Silver tables by
-                                        <code>observation_date</code></td>
+                                        <code>observation_date</code>
+                                    </td>
                                     <td>🟡 Medium</td>
                                 </tr>
                             </tbody>

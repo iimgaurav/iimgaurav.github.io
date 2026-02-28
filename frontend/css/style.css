@@ -180,6 +180,21 @@ img {
     align-items: center;
 }
 
+.nav-logo-img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(139, 92, 246, 0.4);
+    transition: all 0.3s ease;
+}
+
+.nav-logo-img:hover {
+    border-color: var(--accent-lime);
+    box-shadow: 0 0 16px rgba(139, 92, 246, 0.4);
+    transform: scale(1.08);
+}
+
 .logo-wrapper {
     display: flex;
     align-items: center;

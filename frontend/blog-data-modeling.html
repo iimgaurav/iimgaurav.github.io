@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce dbt Data Modeling | Blog | Gaurav Kumar</title>
+    <meta name="description"
+        content="A data transformation project using dbt (data build tool) to process e-commerce sales data using the Medallion Architecture pattern with PostgreSQL and Docker.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Animated Background Canvas -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/logo.png" alt="Gaurav Kumar" class="nav-logo-img">
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#tech-stack">Tech Stack</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="blogs.html">Blog</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#certifications">Certifications</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="toggle-icon sun">☀️</span>
+                    <span class="toggle-icon moon">🌙</span>
+                </button>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post Hero -->
+    <section class="section blog-post-hero">
+        <div class="container">
+            <a href="blogs.html" class="back-link">← Back to Blog</a>
+            <div class="blog-post-hero-content">
+                <div class="blog-post-icon">📊</div>
+                <h1 class="blog-post-title">E-Commerce dbt Data Modeling — Project Walkthrough</h1>
+                <div class="blog-post-meta">
+                    <span class="blog-post-date">📅 March 2025</span>
+                    <span class="blog-post-reading-time">⏱️ 12 min read</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Post Content -->
+    <section class="section blog-post-section">
+        <div class="container">
+            <article class="blog-post">
+
+                <!-- Overview -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Overview</h2>
+                    <p>A data transformation project using <strong>dbt (data build tool)</strong> to process e-commerce
+                        sales data using the <strong>Medallion Architecture</strong> pattern. Built on
+                        <strong>PostgreSQL</strong>, fully containerized with <strong>Docker Compose</strong>, and
+                        automated with <strong>GitHub Actions CI/CD</strong>.</p>
+                    <div class="blog-success">
+                        <span class="success-icon">📦</span>
+                        <p><strong>Data Volume:</strong> 1,000 e-commerce transactions &nbsp;|&nbsp;
+                            <strong>dbt Version:</strong> 1.11.6 &nbsp;|&nbsp;
+                            <strong>Database:</strong> PostgreSQL &nbsp;|&nbsp;
+                            <strong>Python:</strong> 3.11</p>
+                    </div>
+                </section>
+
+                <!-- Architecture Diagram -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Architecture — Medallion Pattern</h2>
+
+                    <div class="diagram-container">
+                        <div class="diagram-title">🏗️ Medallion Architecture — End-to-End Data Flow</div>
+
+                        <!-- Source -->
+                        <div style="text-align:center; margin-bottom:20px;">
+                            <div class="arch-box cloud" style="max-width:380px; margin:0 auto;">
+                                📂 Source Data<span class="arch-box-sub">ecommerce_sales.csv — 1,000 rows</span>
+                            </div>
+                            <div class="arch-connector" style="font-size:0.7rem;">dbt seed ↓</div>
+                        </div>
+
+                        <!-- Layers -->
+                        <div style="display:grid; grid-template-columns:1fr; gap:20px;">
+
+                            <!-- Bronze Layer -->
+                            <div
+                                style="padding:20px; border-radius:12px; border:2px solid rgba(245,158,11,0.4); background:rgba(245,158,11,0.05);">
+                                <div
+                                    style="font-family:var(--font-mono); font-size:0.85rem; font-weight:700; color:#F59E0B; margin-bottom:14px;">
+                                    🥉 Bronze Layer — Raw Data Pass-Through (Views)</div>
+                                <div class="mvc-flow" style="gap:12px;">
+                                    <div class="mvc-box"
+                                        style="background:rgba(245,158,11,0.15);border:2px solid rgba(245,158,11,0.5);color:#F59E0B;">
+                                        📂 ecommerce_sales<span class="mvc-box-sub">seed table</span></div>
+                                    <span class="mvc-arrow">→</span>
+                                    <div class="mvc-box"
+                                        style="background:rgba(245,158,11,0.15);border:2px solid rgba(245,158,11,0.5);color:#F59E0B;">
+                                        👁️ br_ecommerce_sales<span class="mvc-box-sub">view — raw pass-through</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Silver Layer -->
+                            <div
+                                style="padding:20px; border-radius:12px; border:2px solid rgba(192,192,192,0.4); background:rgba(192,192,192,0.05);">
+                                <div
+                                    style="font-family:var(--font-mono); font-size:0.85rem; font-weight:700; color:#C0C0C0; margin-bottom:14px;">
+                                    🥈 Silver Layer — Cleaned & Validated Data (Tables)</div>
+                                <div class="mvc-flow" style="gap:12px;">
+                                    <div class="mvc-box"
+                                        style="background:rgba(245,158,11,0.15);border:2px solid rgba(245,158,11,0.5);color:#F59E0B;">
+                                        👁️ br_ecommerce_sales<span class="mvc-box-sub">bronze view</span></div>
+                                    <span class="mvc-arrow">→</span>
+                                    <div class="mvc-box"
+                                        style="background:rgba(16,185,129,0.15);border:2px solid rgba(16,185,129,0.5);color:#10B981;">
+                                        🧹 Deduplicate<span class="mvc-box-sub">clean & validate</span></div>
+                                    <span class="mvc-arrow">→</span>
+                                    <div class="mvc-box"
+                                        style="background:rgba(192,192,192,0.15);border:2px solid rgba(192,192,192,0.5);color:#C0C0C0;">
+                                        📋 sl_ecommerce_sales<span class="mvc-box-sub">table — clean data</span></div>
+                                </div>
+                            </div>
+
+                            <!-- Gold Layer -->
+                            <div
+                                style="padding:20px; border-radius:12px; border:2px solid rgba(255,215,0,0.4); background:rgba(255,215,0,0.05);">
+                                <div
+                                    style="font-family:var(--font-mono); font-size:0.85rem; font-weight:700; color:#FFD700; margin-bottom:14px;">
+                                    🥇 Gold Layer — Business-Ready Analytics (Fact & Dimension Tables)</div>
+                                <div class="mvc-flow" style="gap:12px;">
+                                    <div class="mvc-box"
+                                        style="background:rgba(192,192,192,0.15);border:2px solid rgba(192,192,192,0.5);color:#C0C0C0;">
+                                        📋 sl_ecommerce_sales<span class="mvc-box-sub">silver table</span></div>
+                                    <span class="mvc-arrow">→</span>
+                                    <div class="mvc-box"
+                                        style="background:rgba(255,215,0,0.15);border:2px solid rgba(255,215,0,0.5);color:#FFD700;">
+                                        🏷️ dim_customer<span class="mvc-box-sub">customer dimension</span></div>
+                                    <div class="mvc-box"
+                                        style="background:rgba(255,215,0,0.15);border:2px solid rgba(255,215,0,0.5);color:#FFD700;">
+                                        📦 dim_product<span class="mvc-box-sub">product dimension</span></div>
+                                    <span class="mvc-arrow">→</span>
+                                    <div class="mvc-box"
+                                        style="background:rgba(255,215,0,0.15);border:2px solid rgba(255,215,0,0.5);color:#FFD700;">
+                                        🏆 fct_order<span class="mvc-box-sub">fact table — transactions</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Data Models Step-by-Step -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Data Models — Layer by Layer</h2>
+
+                    <!-- Bronze -->
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">1️⃣ Bronze Layer — Raw Data Views</h3>
+                        <table class="blog-table">
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Type</th>
+                                    <th>Role</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>br_ecommerce_sales</code></td>
+                                    <td>View</td>
+                                    <td>Raw pass-through of the seed data. Acts as a stable reference point — ensures
+                                        downstream models always read from a named model rather than directly from the
+                                        seed table.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="blog-success">
+                            <span class="success-icon">💡</span>
+                            <p>Views are used here because the raw data is small and doesn't require materialization.
+                                This keeps the Bronze layer lightweight.</p>
+                        </div>
+                    </div>
+
+                    <!-- Silver -->
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">2️⃣ Silver Layer — Cleaned & Validated</h3>
+                        <table class="blog-table">
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Type</th>
+                                    <th>Role</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>sl_ecommerce_sales</code></td>
+                                    <td>Table</td>
+                                    <td>Cleaned, deduplicated transactions. Applies data quality checks — removes
+                                        nulls, validates formats, and ensures each transaction is unique. Materialized as
+                                        a table for query performance.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Gold -->
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">3️⃣ Gold Layer — Analytics-Ready</h3>
+                        <table class="blog-table">
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Type</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>fct_order</code></td>
+                                    <td>Table</td>
+                                    <td>Fact table containing transaction-level details — order ID, customer, product,
+                                        quantity, price, and total amount. The central table for analytics queries.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>dim_customer</code></td>
+                                    <td>Table</td>
+                                    <td>Customer dimension — deduplicated customer records with attributes for
+                                        segmentation and analysis.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>dim_product</code></td>
+                                    <td>Table</td>
+                                    <td>Product dimension — unique product catalog with categories, pricing, and product
+                                        attributes.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Star Schema Diagram -->
+                        <div class="diagram-container" style="margin-top:20px;">
+                            <div class="diagram-title">⭐ Star Schema — Gold Layer</div>
+                            <div class="mvc-flow" style="gap:12px; justify-content:center;">
+                                <div class="mvc-box"
+                                    style="background:rgba(139,92,246,0.15);border:2px solid rgba(139,92,246,0.5);color:#A78BFA;">
+                                    🏷️ dim_customer<span class="mvc-box-sub">customer_id, name, email</span></div>
+                                <span class="mvc-arrow">→</span>
+                                <div class="mvc-box"
+                                    style="background:rgba(255,215,0,0.15);border:2px solid rgba(255,215,0,0.5);color:#FFD700;">
+                                    🏆 fct_order<span class="mvc-box-sub">order_id, customer_id, product_id,
+                                        qty, total</span></div>
+                                <span class="mvc-arrow">←</span>
+                                <div class="mvc-box"
+                                    style="background:rgba(139,92,246,0.15);border:2px solid rgba(139,92,246,0.5);color:#A78BFA;">
+                                    📦 dim_product<span class="mvc-box-sub">product_id, name, category, price</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Project Structure -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Project Structure</h2>
+                    <pre class="code-block">e-com/
+├── dbt_project/dbt_ecom/          # Main dbt project
+│   ├── models/
+│   │   ├── bronze/                # Raw data (views)
+│   │   ├── silver/                # Cleaned data (tables)
+│   │   └── gold/                  # Analytics tables (tables)
+│   ├── seeds/
+│   │   └── ecommerce_sales.csv   # Source data (1000 rows)
+│   ├── tests/                     # dbt tests for data quality
+│   ├── dbt_project.yml            # dbt configuration
+│   └── .dbt/profiles.yml          # Database credentials
+├── data-source/
+│   └── genrate-sales.py           # Python script to generate sample data
+├── docker-compose.yml             # Docker services configuration
+├── dockerfile                     # dbt Docker image
+└── .github/workflows/
+    └── dbt-ci-cd.yml              # GitHub Actions CI/CD pipeline</pre>
+                </section>
+
+                <!-- Quick Start -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Quick Start Guide 🚀</h2>
+
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">Prerequisites</h3>
+                        <ul class="blog-list">
+                            <li>Docker & Docker Compose</li>
+                            <li>Git</li>
+                        </ul>
+                    </div>
+
+                    <div class="blog-subsection">
+                        <h3 class="blog-subheading">Setup & Run</h3>
+
+                        <p><strong>1. Clone the repository</strong></p>
+                        <pre class="code-block">git clone https://github.com/iimgaurav/dbt_e-com.git
+cd e-com</pre>
+
+                        <p><strong>2. Start PostgreSQL service</strong></p>
+                        <pre class="code-block">docker compose up postgres -d</pre>
+
+                        <p><strong>3. Create dev_schema (first time only)</strong></p>
+                        <pre class="code-block">docker compose exec postgres psql -U gau -d e_com -c "CREATE SCHEMA IF NOT EXISTS dev_schema;"</pre>
+
+                        <p><strong>4. Load seed data</strong></p>
+                        <pre class="code-block">docker compose run --rm dbt seed</pre>
+
+                        <p><strong>5. Run dbt models</strong></p>
+                        <pre class="code-block">docker compose run --rm dbt run</pre>
+
+                        <p><strong>6. Run tests</strong></p>
+                        <pre class="code-block">docker compose run --rm dbt test</pre>
+
+                        <p><strong>7. Generate documentation (optional)</strong></p>
+                        <pre class="code-block">docker compose run --rm dbt docs generate
+docker compose run --rm dbt docs serve</pre>
+                        <p>Visit <code>http://localhost:8000</code> to view the docs.</p>
+                    </div>
+                </section>
+
+                <!-- Testing & Data Quality -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Testing & Data Quality 🧪</h2>
+                    <p>All tests are defined in the <code>tests/</code> directory and validate data integrity across
+                        all layers:</p>
+                    <pre class="code-block">docker compose run --rm dbt test</pre>
+
+                    <div class="blog-success">
+                        <span class="success-icon">✅</span>
+                        <p>dbt tests validate uniqueness, not-null constraints, referential integrity, and accepted
+                            values across Bronze, Silver, and Gold models.</p>
+                    </div>
+                </section>
+
+                <!-- Common Commands -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Common Commands 📝</h2>
+                    <table class="blog-table">
+                        <thead>
+                            <tr>
+                                <th>Command</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>dbt debug</code></td>
+                                <td>Test database connection</td>
+                            </tr>
+                            <tr>
+                                <td><code>dbt parse</code></td>
+                                <td>Validate dbt syntax</td>
+                            </tr>
+                            <tr>
+                                <td><code>dbt seed</code></td>
+                                <td>Load CSV data into database</td>
+                            </tr>
+                            <tr>
+                                <td><code>dbt run</code></td>
+                                <td>Execute dbt models</td>
+                            </tr>
+                            <tr>
+                                <td><code>dbt test</code></td>
+                                <td>Run data quality tests</td>
+                            </tr>
+                            <tr>
+                                <td><code>dbt docs generate</code></td>
+                                <td>Generate documentation</td>
+                            </tr>
+                            <tr>
+                                <td><code>dbt clean</code></td>
+                                <td>Remove dbt artifacts</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- CI/CD -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">CI/CD Pipeline 🔐</h2>
+                    <p>Automated CI/CD with <strong>GitHub Actions</strong>. On every push/PR the pipeline runs:</p>
+
+                    <div class="diagram-container">
+                        <div class="diagram-title">🔄 GitHub Actions — CI/CD Flow</div>
+                        <div class="mvc-flow" style="gap:10px;">
+                            <div class="mvc-box"
+                                style="background:rgba(139,92,246,0.15);border:2px solid rgba(139,92,246,0.5);color:#A78BFA;">
+                                ✅ dbt parse<span class="mvc-box-sub">validate syntax</span></div>
+                            <span class="mvc-arrow">→</span>
+                            <div class="mvc-box"
+                                style="background:rgba(245,158,11,0.15);border:2px solid rgba(245,158,11,0.5);color:#F59E0B;">
+                                🌱 dbt seed<span class="mvc-box-sub">load data</span></div>
+                            <span class="mvc-arrow">→</span>
+                            <div class="mvc-box"
+                                style="background:rgba(16,185,129,0.15);border:2px solid rgba(16,185,129,0.5);color:#10B981;">
+                                🏗️ dbt run<span class="mvc-box-sub">build models</span></div>
+                            <span class="mvc-arrow">→</span>
+                            <div class="mvc-box"
+                                style="background:rgba(6,182,212,0.15);border:2px solid rgba(6,182,212,0.5);color:#06B6D4;">
+                                🧪 dbt test<span class="mvc-box-sub">quality checks</span></div>
+                            <span class="mvc-arrow">→</span>
+                            <div class="mvc-box"
+                                style="background:rgba(255,215,0,0.15);border:2px solid rgba(255,215,0,0.5);color:#FFD700;">
+                                📚 dbt docs<span class="mvc-box-sub">generate docs</span></div>
+                        </div>
+                    </div>
+
+                    <ul class="blog-list">
+                        <li>✅ Validates dbt syntax (<code>dbt parse</code>)</li>
+                        <li>✅ Loads seed data (<code>dbt seed</code>)</li>
+                        <li>✅ Builds models (<code>dbt run</code>)</li>
+                        <li>✅ Tests data quality (<code>dbt test</code>)</li>
+                        <li>✅ Generates documentation (<code>dbt docs generate</code>)</li>
+                    </ul>
+                </section>
+
+                <!-- Database Configuration -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Database Configuration 🛠️</h2>
+                    <p>The <code>profiles.yml</code> file contains PostgreSQL connection details:</p>
+                    <table class="blog-table">
+                        <thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Host</td>
+                                <td><code>postgres</code> (Docker container)</td>
+                            </tr>
+                            <tr>
+                                <td>Port</td>
+                                <td><code>5432</code></td>
+                            </tr>
+                            <tr>
+                                <td>User</td>
+                                <td><code>gau</code></td>
+                            </tr>
+                            <tr>
+                                <td>Database</td>
+                                <td><code>e_com</code></td>
+                            </tr>
+                            <tr>
+                                <td>Schema</td>
+                                <td><code>dev_schema</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="blog-success">
+                        <span class="success-icon">⚠️</span>
+                        <p><strong>Security Note:</strong> Never commit actual passwords. Use environment variables in
+                            production: <code>password: "{{ env_var('DBT_PASSWORD') }}"</code></p>
+                    </div>
+                </section>
+
+                <!-- Technology Stack -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Technology Stack</h2>
+                    <div class="diagram-container">
+                        <div class="diagram-title">🧰 Complete Technology Map</div>
+                        <div class="tech-grid">
+                            <div class="tech-row">
+                                <span class="tech-row-label">Database</span>
+                                <div class="tech-row-items">
+                                    <span class="tech-pill cloud-pill">PostgreSQL</span>
+                                </div>
+                            </div>
+                            <div class="tech-row">
+                                <span class="tech-row-label">Transform</span>
+                                <div class="tech-row-items">
+                                    <span class="tech-pill feat">dbt 1.11.6</span>
+                                    <span class="tech-pill feat">SQL</span>
+                                    <span class="tech-pill feat">Jinja</span>
+                                </div>
+                            </div>
+                            <div class="tech-row">
+                                <span class="tech-row-label">Infra</span>
+                                <div class="tech-row-items">
+                                    <span class="tech-pill devops">Docker Compose</span>
+                                    <span class="tech-pill devops">Dockerfile</span>
+                                </div>
+                            </div>
+                            <div class="tech-row">
+                                <span class="tech-row-label">CI/CD</span>
+                                <div class="tech-row-items">
+                                    <span class="tech-pill backend">GitHub Actions</span>
+                                </div>
+                            </div>
+                            <div class="tech-row">
+                                <span class="tech-row-label">Language</span>
+                                <div class="tech-row-items">
+                                    <span class="tech-pill frontend">Python 3.11</span>
+                                    <span class="tech-pill frontend">SQL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Resources -->
+                <section class="blog-section">
+                    <h2 class="blog-subtitle">Resources 📚</h2>
+                    <ul class="blog-list">
+                        <li><a href="https://docs.getdbt.com/" target="_blank" style="color:#06B6D4;">dbt
+                                Documentation</a></li>
+                        <li><a href="https://www.postgresql.org/docs/" target="_blank"
+                                style="color:#06B6D4;">PostgreSQL Docs</a></li>
+                        <li><a href="https://www.databricks.com/blog/2022/06/24/easily-build-complex-pipelines-with-databricks-sql-and-delta-live-tables.html"
+                                target="_blank" style="color:#06B6D4;">Medallion Architecture Pattern</a></li>
+                    </ul>
+                </section>
+
+                <!-- Call to Action -->
+                <section class="blog-section blog-cta">
+                    <h2>Want to discuss this project?</h2>
+                    <p>Feel free to reach out or explore the source code on GitHub.</p>
+                    <div class="blog-cta-buttons">
+                        <a href="https://github.com/iimgaurav/dbt_e-com" target="_blank" class="btn btn-primary">
+                            <span class="btn-icon">⭐</span> View on GitHub
+                        </a>
+                        <a href="https://topmate.io/iimgaurav/" target="_blank" class="btn btn-talk">
+                            <span class="btn-icon">🤝</span> Lets Talk
+                        </a>
+                        <a href="index.html#contact" class="btn btn-secondary">
+                            <span class="btn-icon">📧</span> Contact Me
+                        </a>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </section>
+
+    <!-- Related Posts -->
+    <section class="section blog-related">
+        <div class="container">
+            <h2 class="section-title">More <span class="gradient-text">Projects</span></h2>
+            <p class="section-subtitle">Check out other projects on my portfolio</p>
+            <div class="blog-links">
+                <a href="index.html#projects" class="btn btn-secondary">
+                    <span class="btn-icon">🔗</span> View All Projects
+                </a>
+                <a href="blogs.html" class="btn btn-ghost">
+                    <span class="btn-icon">📚</span> Back to Blog
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terminal Footer -->
+    <footer class="terminal-footer">
+        <div class="container">
+            <div class="footer-terminal">
+                <div class="terminal-header">
+                    <span class="terminal-dot red"></span>
+                    <span class="terminal-dot yellow"></span>
+                    <span class="terminal-dot green"></span>
+                    <span class="terminal-title">gaurav@portfolio:~</span>
+                </div>
+                <div class="terminal-content">
+                    <p>$ <span class="terminal-cursor">▸</span> Built with <span class="accent">HTML</span>, <span
+                            class="accent">CSS</span>, <span class="accent">JavaScript</span></p>
+                    <p>$ <span class="terminal-cursor">▸</span> Hosted on <span class="accent">Firebase</span> | <span
+                            class="accent">GitHub</span> | <span class="accent">Azure</span></p>
+                    <p>$ <span class="terminal-cursor">▸</span> © 2025 Gaurav Kumar. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
